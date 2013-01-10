@@ -1,20 +1,15 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name;
+$this->pageTitle=Yii::app()->name . " - " . Yii::t('general', 'home');
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h1>Bienvenido al <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h1><?php echo CHtml::encode(Yii::t('general', 'enterprise'))?></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<br/>
+Aqui podrán conocer el estado de sus Equipos en reparacion desde la pagina de Consultas de Ordenes.<br/>
+<br/>
+Tambien podrán ver imagenes de nuestro taller y algunos equipos reparados en la pagina de Quienes Somos.<br/>
+<br/>
+Por dudas y consultas al servicio tecnico, podran enviar un email a traves de la pagina de contacto.<br/>

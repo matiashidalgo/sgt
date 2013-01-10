@@ -2,20 +2,22 @@
 /* @var $this ClientesController */
 /* @var $model Clientes */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'clientes') . ' - ' . Yii::t('general', 'edit');
+
 $this->breadcrumbs=array(
-	'Clientes'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('general', 'clientes')=>array('index'),
+	Yii::t('general', 'cliente').' ID='.$model->id=>array('view','id'=>$model->id),
+	Yii::t('general', 'edit'),
 );
 
 $this->menu=array(
-	array('label'=>'List Clientes', 'url'=>array('index')),
-	array('label'=>'Create Clientes', 'url'=>array('create')),
-	array('label'=>'View Clientes', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Clientes', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'clientes'), 'url'=>array('index')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'cliente'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'details').' '.Yii::t('general', 'cliente'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'clientes'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Clientes <?php echo $model->id; ?></h1>
+<h1><?php echo (Yii::t('general', 'edit').' '.Yii::t('general', 'cliente') . ' #' . $model->id); ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

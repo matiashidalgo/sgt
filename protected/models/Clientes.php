@@ -11,8 +11,8 @@
  * @property string $nombre
  * @property string $apellido
  * @property string $direccion
- * @property integer $telefono
- * @property integer $celular
+ * @property string $telefono
+ * @property string $celular
  * @property string $ciudad
  * @property string $email
  * @property string $observaciones
@@ -49,10 +49,11 @@ class Clientes extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('password', 'required'),
-			array('admin, telefono, celular', 'numerical', 'integerOnly'=>true),
+			array('admin', 'numerical', 'integerOnly'=>true),
 			array('cuenta, password', 'length', 'max'=>16),
 			array('nombre, apellido', 'length', 'max'=>30),
 			array('direccion', 'length', 'max'=>40),
+			array('telefono, celular', 'length', 'max'=>13),
 			array('ciudad', 'length', 'max'=>20),
 			array('email', 'length', 'max'=>50),
 			array('observaciones', 'safe'),
@@ -113,8 +114,8 @@ class Clientes extends CActiveRecord
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('apellido',$this->apellido,true);
 		$criteria->compare('direccion',$this->direccion,true);
-		$criteria->compare('telefono',$this->telefono);
-		$criteria->compare('celular',$this->celular);
+		$criteria->compare('telefono',$this->telefono,true);
+		$criteria->compare('celular',$this->celular,true);
 		$criteria->compare('ciudad',$this->ciudad,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('observaciones',$this->observaciones,true);

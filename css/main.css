@@ -49,7 +49,7 @@ body
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+	/* background:white url(bg.gif) repeat-x left top; */
 }
 
 #mainmenu ul
@@ -226,4 +226,166 @@ div.search-form
 .operations li a:hover
 {
 	background: #80CFFF;
+}
+
+
+/*** AGREGADO POR MATIAS H. ***/
+
+body{
+	background: url("../images/fondo.jpg") repeat scroll 50% 50% #4C4C4C;
+}
+
+#logo
+{
+	text-align:center;
+}
+
+#header{
+	border-top: 3px solid #B8EC79;
+	border-radius: 6px 6px 0px 0px;
+}
+
+#page {
+	border-radius: 10px 10px 10px 10px;
+	border-top: 1px solid #9FDA58;
+	background-color:#F1F1F1;
+}
+
+
+#content {
+	/* background: url("../images/ui-bg_dots-small_0_4c4c4c_2x2.png") repeat scroll 50% 50% #4C4C4C;
+    color: #FFFFFF; */
+}
+
+#footer
+{
+	background: url("../images/ui-bg_loop_85_9fda58_21x21.png") repeat scroll 50% 50% #9FDA58;
+	border-top: 2px solid #9FDA58;
+	border-radius:5px;
+	margin: 0;
+}
+
+#mainmenu ul li a
+{
+	/* color:#ffffff; */
+	color: #B8EC79;
+	background: url("../images/ui-bg_glass_40_0a0a0a_1x400.png") repeat-x scroll 50% 50% #0A0A0A;
+	border: 2px solid #1B1613;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+	border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+#mainmenu ul li a:hover{
+	background: url("../images/ui-bg_dots-small_0_4c4c4c_2x2.png") repeat scroll 50% 50% #96f226;
+    color: #FFFFFF;
+    font-weight: bold;
+	box-shadow: 0 -5px 6px #000000;
+}
+
+#mainmenu ul li.active a {
+	background: url("../images/ui-bg_dots-small_0_4c4c4c_2x2.png") repeat scroll 50% 50% #4C4C4C;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#mainmenu {
+	/* background-color: #000000; */
+    color: #222222;
+    font-weight: bold;
+	padding: 5px 0 0;
+}
+
+#mainmenu ul {
+	background: url("../images/ui-bg_loop_85_9fda58_21x21.png") repeat scroll 50% 50% #9FDA58;
+    border: 2px solid #9FDA58;
+	padding:12px 20px 5px 20px; 
+	border-radius:6px;
+}
+
+#mainmenu ul li {
+	background: url("../images/ui-bg_glass_40_0a0a0a_1x400.png") repeat-x scroll 50% 50% #0A0A0A;
+    color: #B8EC79;
+    font-weight: bold;
+}
+
+.enterprise {
+	text-align:center;
+	font-size: 200%;
+}
+
+.menu-inferior {
+	margin: 0;
+}
+
+.portlet {
+    background-color: #FCFCFC;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.portlet-decoration
+{
+	background: url("../images/ui-bg_loop_85_9fda58_21x21.png") repeat scroll 50% 50% #9FDA58;
+	border-left: 5px solid #9FDA58;
+	border-radius:5px;
+}
+
+.portlet-title
+{
+	font-size: 14px;
+	color: #000000;
+}
+
+.portlet-content
+{
+	background-color: #FCFCFC;
+}
+
+.portlet-content ul
+{
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-content li
+{
+	padding: 2px 0 4px 0px;
+}
+
+.operations
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.operations li
+{
+	padding-bottom: 2px;
+}
+
+.operations li a
+{
+	font: bold 12px Arial;
+	color: #7EB23F;
+	display: block;
+	padding: 2px 0 2px 8px;
+	line-height: 15px;
+	text-decoration: none;
+}
+
+.operations li a:visited
+{
+	color: #7EB23F;
+}
+
+.operations li a:hover
+{
+	background: #9FDA58;
 }

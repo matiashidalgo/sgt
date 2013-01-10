@@ -2,17 +2,19 @@
 /* @var $this ConsultasController */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'consultas') . ' - ' . Yii::t('general', 'list');
+
 $this->breadcrumbs=array(
-	'Consultases',
+	Yii::t('general', 'consultas'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Consultas', 'url'=>array('create')),
-	array('label'=>'Manage Consultas', 'url'=>array('admin')),
+	//array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'consulta'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'consultas'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Consultases</h1>
+<h1><?php echo Yii::t('general', 'consultas')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

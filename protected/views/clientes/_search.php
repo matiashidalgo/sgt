@@ -10,12 +10,12 @@
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
-
+<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
 		<?php echo $form->textField($model,'id'); ?>
 	</div>
-
+*/ ?>
 	<div class="row">
 		<?php echo $form->label($model,'cuenta'); ?>
 		<?php echo $form->textField($model,'cuenta',array('size'=>16,'maxlength'=>16)); ?>
@@ -60,14 +60,14 @@
 		<?php echo $form->label($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
-
+<?php /*
 	<div class="row">
 		<?php echo $form->label($model,'observaciones'); ?>
 		<?php echo $form->textArea($model,'observaciones',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
-
+*/ ?>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton(Yii::t('general', 'search')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-01-2013 a las 00:20:12
+-- Tiempo de generación: 10-01-2013 a las 01:44:45
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -36,13 +36,13 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `nombre` varchar(30) DEFAULT NULL,
   `apellido` varchar(30) DEFAULT NULL,
   `direccion` varchar(40) DEFAULT NULL,
-  `telefono` int(12) DEFAULT NULL,
-  `celular` int(12) DEFAULT NULL,
+  `telefono` varchar(13) DEFAULT NULL,
+  `celular` varchar(13) DEFAULT NULL,
   `ciudad` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `observaciones` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -93,10 +93,10 @@ CREATE TABLE IF NOT EXISTS `equipos_repuestos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `imagenes_ordenes`
+-- Estructura de tabla para la tabla `img_ordenes`
 --
 
-CREATE TABLE IF NOT EXISTS `imagenes_ordenes` (
+CREATE TABLE IF NOT EXISTS `img_ordenes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nro_orden` int(11) NOT NULL,
   `direccion_web` varchar(100) NOT NULL,
@@ -204,28 +204,28 @@ CREATE TABLE IF NOT EXISTS `service_oficial` (
 -- Filtros para la tabla `equipos_repuestos`
 --
 ALTER TABLE `equipos_repuestos`
-  ADD CONSTRAINT `equipos_repuestos_ibfk_2` FOREIGN KEY (`id_repuesto`) REFERENCES `repuestos` (`id`),
-  ADD CONSTRAINT `equipos_repuestos_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`);
+  ADD CONSTRAINT `equipos_repuestos_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
+  ADD CONSTRAINT `equipos_repuestos_ibfk_2` FOREIGN KEY (`id_repuesto`) REFERENCES `repuestos` (`id`);
 
 --
--- Filtros para la tabla `imagenes_ordenes`
+-- Filtros para la tabla `img_ordenes`
 --
-ALTER TABLE `imagenes_ordenes`
-  ADD CONSTRAINT `imagenes_ordenes_ibfk_1` FOREIGN KEY (`nro_orden`) REFERENCES `ordenes` (`nro_orden`);
+ALTER TABLE `img_ordenes`
+  ADD CONSTRAINT `img_ordenes_ibfk_1` FOREIGN KEY (`nro_orden`) REFERENCES `ordenes` (`nro_orden`);
 
 --
 -- Filtros para la tabla `ordenes`
 --
 ALTER TABLE `ordenes`
-  ADD CONSTRAINT `ordenes_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
-  ADD CONSTRAINT `ordenes_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`);
+  ADD CONSTRAINT `ordenes_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
+  ADD CONSTRAINT `ordenes_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`);
 
 --
 -- Filtros para la tabla `ordenes_so`
 --
 ALTER TABLE `ordenes_so`
-  ADD CONSTRAINT `ordenes_so_ibfk_2` FOREIGN KEY (`id_serviceo`) REFERENCES `service_oficial` (`id`),
-  ADD CONSTRAINT `ordenes_so_ibfk_1` FOREIGN KEY (`nro_orden`) REFERENCES `ordenes` (`nro_orden`);
+  ADD CONSTRAINT `ordenes_so_ibfk_1` FOREIGN KEY (`nro_orden`) REFERENCES `ordenes` (`nro_orden`),
+  ADD CONSTRAINT `ordenes_so_ibfk_2` FOREIGN KEY (`id_serviceo`) REFERENCES `service_oficial` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

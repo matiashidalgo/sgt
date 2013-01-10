@@ -2,17 +2,19 @@
 /* @var $this ClientesController */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'clientes') . ' - ' . Yii::t('general', 'list');
+
 $this->breadcrumbs=array(
-	'Clientes',
+	Yii::t('general', 'clientes'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Clientes', 'url'=>array('create')),
-	array('label'=>'Manage Clientes', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'cliente'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'clientes'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Clientes</h1>
+<h1><?php echo Yii::t('general', 'clientes')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

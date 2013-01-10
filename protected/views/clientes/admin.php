@@ -2,19 +2,21 @@
 /* @var $this ClientesController */
 /* @var $model Clientes */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'clientes') . ' - ' . Yii::t('general', 'admin');
+
 $this->breadcrumbs=array(
-	'Clientes'=>array('index'),
-	'Manage',
+	Yii::t('general', 'clientes')=>array('index'),
+	Yii::t('general', 'admin'),
 );
 
 $this->menu=array(
-	array('label'=>'List Clientes', 'url'=>array('index')),
-	array('label'=>'Create Clientes', 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'clientes'), 'url'=>array('index')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'cliente'), 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
-	$('.search-form').toggle();
+	$('.search-form').toggle('slow');
 	return false;
 });
 $('.search-form form').submit(function(){
@@ -26,14 +28,14 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Clientes</h1>
+<h1><?php echo (Yii::t('general', 'admin').' '.Yii::t('general', 'cliente')); ?></h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+Para lograr un resultado de mas concreto puede utilizar operadores de comparacion (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+o <b>=</b>) al comienzo de cada campo
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('general','advanced_search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -45,18 +47,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'cuenta',
-		'admin',
-		'password',
+		//'id',
+		//'cuenta',
+		//'admin',
+		//'password',
 		'nombre',
 		'apellido',
-		/*
 		'direccion',
 		'telefono',
 		'celular',
 		'ciudad',
-		'email',
+		/*'email',
 		'observaciones',
 		*/
 		array(

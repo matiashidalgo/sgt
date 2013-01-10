@@ -2,17 +2,19 @@
 /* @var $this EquiposController */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'equipos') . ' - ' . Yii::t('general', 'list');
+
 $this->breadcrumbs=array(
-	'Equiposes',
+	Yii::t('general', 'equipos'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Equipos', 'url'=>array('create')),
-	array('label'=>'Manage Equipos', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'equipo'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'equipos'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Equiposes</h1>
+<h1><?php echo Yii::t('general', 'equipos')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

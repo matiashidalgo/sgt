@@ -2,26 +2,28 @@
 /* @var $this ConsultasController */
 /* @var $model Consultas */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'consultas') . ' - ' . Yii::t('general', 'details');
+
 $this->breadcrumbs=array(
-	'Consultases'=>array('index'),
+	Yii::t('general', 'consultas')=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List Consultas', 'url'=>array('index')),
-	array('label'=>'Create Consultas', 'url'=>array('create')),
-	array('label'=>'Update Consultas', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Consultas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Consultas', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'consultas'), 'url'=>array('index')),
+	//array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'consulta'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'edit').' '.Yii::t('general', 'consulta'), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>Yii::t('general', 'delete').' '.Yii::t('general', 'consulta'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Esta seguro de eliminar esta '.Yii::t('general', 'consulta').'?')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'consultas'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Consultas #<?php echo $model->id; ?></h1>
+<h1><?php echo (Yii::t('general', 'details').' de la '.Yii::t('general', 'consulta') . ' #' . $model->id); ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'nombre',
 		'apellido',
 		'telefono',
