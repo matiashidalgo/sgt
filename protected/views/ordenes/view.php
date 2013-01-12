@@ -1,22 +1,23 @@
 <?php
 /* @var $this OrdenesController */
 /* @var $model Ordenes */
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'ordenes') . ' - ' . Yii::t('general', 'details');
 
 $this->breadcrumbs=array(
-	'Ordenes'=>array('index'),
-	$model->nro_orden,
+	Yii::t('general', 'ordenes')=>array('index'),
+	Yii::t('general', 'orden').' ID='.$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List Ordenes', 'url'=>array('index')),
-	array('label'=>'Create Ordenes', 'url'=>array('create')),
-	array('label'=>'Update Ordenes', 'url'=>array('update', 'id'=>$model->nro_orden)),
-	array('label'=>'Delete Ordenes', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->nro_orden),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Ordenes', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'ordenes'), 'url'=>array('index')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'orden'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'edit').' '.Yii::t('general', 'orden'), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>Yii::t('general', 'delete').' '.Yii::t('general', 'orden'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Esta seguro de eliminar esta '.Yii::t('general', 'orden').'?')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'ordenes'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Ordenes #<?php echo $model->nro_orden; ?></h1>
+<h1><?php echo (Yii::t('general', 'details').' del '.Yii::t('general', 'orden') . ' #' . $model->id); ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

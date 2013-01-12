@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'admin'); ?>
-		<?php echo $form->textField($model,'admin'); ?>
+		<?php echo $form->checkBox($model,'admin'); ?>
 		<?php echo $form->error($model,'admin'); ?>
 	</div>
 
@@ -53,13 +53,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'telefono'); ?>
-		<?php echo $form->textField($model,'telefono'); ?>
+		<?php echo $form->textField($model,'telefono',array('size'=>13,'maxlength'=>13)); ?>
 		<?php echo $form->error($model,'telefono'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'celular'); ?>
-		<?php echo $form->textField($model,'celular'); ?>
+		<?php echo $form->textField($model,'celular',array('size'=>13,'maxlength'=>13)); ?>
 		<?php echo $form->error($model,'celular'); ?>
 	</div>
 

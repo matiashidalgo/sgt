@@ -69,9 +69,9 @@ class Equipos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'tipo' => 'Tipo',
-			'modelo' => 'Modelo',
-			'marca' => 'Marca',
+			'tipo' => Yii::t('general', 'tipo'),
+			'modelo' => Yii::t('general', 'modelo'),
+			'marca' => Yii::t('general', 'marca'),
 		);
 	}
 

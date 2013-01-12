@@ -73,11 +73,11 @@ class OrdenesSo extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nro_orden' => 'Nro Orden',
-			'id_serviceo' => 'Id Serviceo',
-			'nro_orden_so' => 'Nro Orden So',
-			'fecha_ingreso' => 'Fecha Ingreso',
-			'estado' => 'Estado',
+			'nro_orden' => Yii::t('general', 'nro_orden'),
+			'id_serviceo' => Yii::t('general', 'id_serviceo'),
+			'nro_orden_so' => Yii::t('general', 'nro_orden_so'),
+			'fecha_ingreso' => Yii::t('general', 'fecha_ingreso'),
+			'estado' => Yii::t('general', 'estado'),
 		);
 	}
 

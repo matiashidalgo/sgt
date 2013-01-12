@@ -2,17 +2,19 @@
 /* @var $this RepuestosController */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'repuestos') . ' - ' . Yii::t('general', 'list');
+
 $this->breadcrumbs=array(
-	'Repuestoses',
+	Yii::t('general', 'repuestos'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Repuestos', 'url'=>array('create')),
-	array('label'=>'Manage Repuestos', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'repuesto'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'repuestos'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Repuestoses</h1>
+<h1><?php echo Yii::t('general', 'repuestos')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

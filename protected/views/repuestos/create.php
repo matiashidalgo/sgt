@@ -2,17 +2,19 @@
 /* @var $this RepuestosController */
 /* @var $model Repuestos */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'repuestos') . ' - ' . Yii::t('general', 'create');
+
 $this->breadcrumbs=array(
-	'Repuestoses'=>array('index'),
-	'Create',
+	Yii::t('general', 'repuestos')=>array('index'),
+	Yii::t('general', 'create'),
 );
 
 $this->menu=array(
-	array('label'=>'List Repuestos', 'url'=>array('index')),
-	array('label'=>'Manage Repuestos', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'repuestos'), 'url'=>array('index')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'repuestos'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Repuestos</h1>
+<h1><?php echo (Yii::t('general', 'create').' '.Yii::t('general', 'repuesto'));?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

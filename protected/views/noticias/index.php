@@ -1,18 +1,19 @@
 <?php
 /* @var $this NoticiasController */
 /* @var $dataProvider CActiveDataProvider */
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'noticias') . ' - ' . Yii::t('general', 'list');
 
 $this->breadcrumbs=array(
-	'Noticiases',
+	Yii::t('general', 'noticias'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Noticias', 'url'=>array('create')),
-	array('label'=>'Manage Noticias', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'noticia'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'noticias'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Noticiases</h1>
+<h1><?php echo Yii::t('general', 'noticias')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

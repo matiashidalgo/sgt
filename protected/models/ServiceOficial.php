@@ -69,9 +69,9 @@ class ServiceOficial extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nombre' => 'Nombre',
-			'sitio_web' => 'Sitio Web',
-			'tipodeorden' => 'Tipodeorden',
+			'nombre' => Yii::t('general', 'nombre'),
+			'sitio_web' => Yii::t('general', 'sitio_web'),
+			'tipodeorden' => Yii::t('general', 'tipodeorden'),
 		);
 	}
 

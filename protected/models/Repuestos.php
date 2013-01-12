@@ -76,13 +76,13 @@ class Repuestos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'descripcion' => 'Descripcion',
-			'tipo' => 'Tipo',
-			'marca' => 'Marca',
-			'estado' => 'Estado',
-			'observaciones' => 'Observaciones',
-			'cantidad' => 'Cantidad',
-			'ubicacion' => 'Ubicacion',
+			'descripcion' => Yii::t('general', 'descripcion'),
+			'tipo' => Yii::t('general', 'tipo'),
+			'marca' => Yii::t('general', 'marca'),
+			'estado' => Yii::t('general', 'estado'),
+			'observaciones' => Yii::t('general', 'observaciones'),
+			'cantidad' => Yii::t('general', 'cantidad'),
+			'ubicacion' => Yii::t('general', 'ubicacion'),
 		);
 	}
 

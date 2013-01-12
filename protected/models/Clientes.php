@@ -82,17 +82,17 @@ class Clientes extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'cuenta' => 'Cuenta',
-			'admin' => 'Admin',
-			'password' => 'Password',
-			'nombre' => 'Nombre',
-			'apellido' => 'Apellido',
-			'direccion' => 'Direccion',
-			'telefono' => 'Telefono',
-			'celular' => 'Celular',
-			'ciudad' => 'Ciudad',
-			'email' => 'Email',
-			'observaciones' => 'Observaciones',
+			'cuenta' => Yii::t('general', 'cuenta'),
+			'admin' => Yii::t('general', 'cliadmin'),
+			'password' => Yii::t('general', 'password'),
+			'nombre' => Yii::t('general', 'nombre'),
+			'apellido' => Yii::t('general', 'apellido'),
+			'direccion' => Yii::t('general', 'direccion'),
+			'telefono' => Yii::t('general', 'telefono'),
+			'celular' => Yii::t('general', 'celular'),
+			'ciudad' => Yii::t('general', 'ciudad'),
+			'email' => Yii::t('general', 'email'),
+			'observaciones' => Yii::t('general', 'observaciones'),
 		);
 	}
 

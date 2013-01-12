@@ -20,7 +20,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#clientes-grid').yiiGridView('update', {
+	$('#equipos-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;

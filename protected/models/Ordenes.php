@@ -54,11 +54,11 @@ class Ordenes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nro_orden, id_cliente, id_equipo, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado', 'required'),
+			array('nro_orden, id_cliente, id_equipo, falla, estado', 'required'),
 			array('nro_orden, id_cliente, id_equipo', 'numerical', 'integerOnly'=>true),
 			array('nro_serie, adquirido_en, nro_factura, estado', 'length', 'max'=>50),
 			array('falla', 'length', 'max'=>255),
-			array('fecha_compra', 'safe'),
+			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, reparacion', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('nro_orden, id_cliente, id_equipo, nro_serie, adquirido_en, nro_factura, fecha_compra, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado', 'safe', 'on'=>'search'),
@@ -86,21 +86,21 @@ class Ordenes extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'nro_orden' => 'Nro Orden',
+			'nro_orden' => Yii::t('general', 'nro_orden'),
 			'id_cliente' => 'Id Cliente',
 			'id_equipo' => 'Id Equipo',
-			'nro_serie' => 'Nro Serie',
-			'adquirido_en' => 'Adquirido En',
-			'nro_factura' => 'Nro Factura',
-			'fecha_compra' => 'Fecha Compra',
-			'falla' => 'Falla',
-			'reparacion' => 'Reparacion',
-			'fecha_ingreso' => 'Fecha Ingreso',
-			'fecha_presupuesto' => 'Fecha Presupuesto',
-			'fecha_reparado' => 'Fecha Reparado',
-			'fecha_prometido' => 'Fecha Prometido',
-			'fecha_entrega' => 'Fecha Entrega',
-			'estado' => 'Estado',
+			'nro_serie' => Yii::t('general', 'nro_serie'),
+			'adquirido_en' => Yii::t('general', 'adquirido_en'),
+			'nro_factura' => Yii::t('general', 'nro_factura'),
+			'fecha_compra' => Yii::t('general', 'fecha_compra'),
+			'falla' => Yii::t('general', 'falla'),
+			'reparacion' => Yii::t('general', 'reparacion'),
+			'fecha_ingreso' => Yii::t('general', 'fecha_ingreso'),
+			'fecha_presupuesto' => Yii::t('general', 'fecha_presupuesto'),
+			'fecha_reparado' => Yii::t('general', 'fecha_reparado'),
+			'fecha_prometido' => Yii::t('general', 'fecha_prometido'),
+			'fecha_entrega' => Yii::t('general', 'fecha_entrega'),
+			'estado' => Yii::t('general', 'estado'),
 		);
 	}
 

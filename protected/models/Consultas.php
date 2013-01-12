@@ -67,11 +67,11 @@ class Consultas extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nombre' => 'Nombre',
-			'apellido' => 'Apellido',
-			'telefono' => 'Telefono',
-			'email' => 'Email',
-			'consulta' => 'Consulta',
+			'nombre' => Yii::t('general', 'nombre'),
+			'apellido' => Yii::t('general', 'apellido'),
+			'telefono' => Yii::t('general', 'telefono'),
+			'email' => Yii::t('general', 'email'),
+			'consulta' => Yii::t('general', 'consulta'),
 		);
 	}
 

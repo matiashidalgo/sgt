@@ -61,8 +61,8 @@ class Noticias extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'noticia' => 'Noticia',
-			'fecha' => 'Fecha',
+			'noticia' => Yii::t('general', 'noticia'),
+			'fecha' => Yii::t('general', 'fecha'),
 		);
 	}
 

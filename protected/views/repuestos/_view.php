@@ -33,11 +33,9 @@
 	<?php echo CHtml::encode($data->cantidad); ?>
 	<br />
 
-	<?php /*
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ubicacion')); ?>:</b>
 	<?php echo CHtml::encode($data->ubicacion); ?>
 	<br />
-
-	*/ ?>
 
 </div>

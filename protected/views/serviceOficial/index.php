@@ -2,17 +2,19 @@
 /* @var $this ServiceOficialController */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'service_oficiales') . ' - ' . Yii::t('general', 'list');
+
 $this->breadcrumbs=array(
-	'Service Oficials',
+	Yii::t('general', 'service_oficiales'),
 );
 
 $this->menu=array(
-	array('label'=>'Create ServiceOficial', 'url'=>array('create')),
-	array('label'=>'Manage ServiceOficial', 'url'=>array('admin')),
+	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'service_oficial'), 'url'=>array('create')),
+	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'service_oficiales'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Service Oficials</h1>
+<h1><?php echo Yii::t('general', 'service_oficiales')?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

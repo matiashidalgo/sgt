@@ -37,7 +37,6 @@ return array(
 	'home' => "Inicio",
 	'entry' => "Ingreso",
 	'contact' => "Contacto",
-	'telephone' => "Teléfono",
 	'mail' => "Email",
 	'enter'=> "Entrar",
 	'message' => "Mensaje",
@@ -46,6 +45,9 @@ return array(
 	'error_empty' => " no puede estar vacío",
 	'error_numerical' => " debe ser un número",
 	'admin' => "Administrar",
+	
+	/*** Etiquetas para nombrar los objetos/tablas ***/
+	
 	'clientes' => "Clientes",
 	'equipos' => "Equipos",
 	'ordenes' => "Ordenes",
@@ -54,10 +56,65 @@ return array(
 	'consultas' => "Consultas",
 	'noticias' => "Noticias",
 	'cliente' => "Cliente",
-	'equipo' => "Equip",
+	'equipo' => "Equipo",
 	'orden' => "Orden",
 	'service_oficial' => "Service Oficial",
 	'repuesto' => "Repuesto",
 	'consulta' => "Consulta",
 	'noticia' => "Noticia",
+	
+	/*** Etiquetas de los campos de cada Tabla ***/
+	
+	/** Clientes **/
+	'cuenta' => 'Cuenta',
+	'cliadmin' => 'Administrador',
+//	'password' => 'Contraseña', Ya existe declarada un password con el mismo contenido
+	'nombre' => 'Nombre',
+	'apellido' => 'Apellido',
+	'direccion' => 'Direccion',
+	'telefono' => 'Teléfono',
+	'celular' => 'Celular',
+	'ciudad' => 'Ciudad',
+	'email' => 'Email',
+	'observaciones' => 'Observaciones',
+	
+	/** Consultas **/
+	'consulta' => 'Consulta',
+	
+	/** Equipos **/
+	'tipo' => 'Tipo',
+	'modelo' => 'Modelo',
+	'marca' => 'Marca',
+	
+	/** Noticias **/
+	'noticia' => 'Noticia',
+	'fecha' => 'Fecha',
+	
+	/** Ordenes **/
+	'nro_orden' => 'Nro Orden',
+	'nro_serie' => 'Nro Serie',
+	'adquirido_en' => 'Adquirido En',
+	'nro_factura' => 'Nro Factura',
+	'fecha_compra' => 'Fecha de Compra',
+	'falla' => 'Falla',
+	'reparacion' => 'Reparación',
+	'fecha_ingreso' => 'Fecha de Ingreso',
+	'fecha_presupuesto' => 'Fecha de Presupuesto',
+	'fecha_reparado' => 'Fecha de Reparado',
+	'fecha_prometido' => 'Fecha de Prometido',
+	'fecha_entrega' => 'Fecha de Entrega',
+	'estado' => 'Estado',
+	
+	/** OrdenesSo **/
+	'id_serviceo' => 'Service Oficial',
+	'nro_orden_so' => 'Nro Orden del Service Oficial',
+	
+	/** Repuestos **/
+	'descripcion' => 'Descripción',
+	'cantidad' => 'Cantidad',
+	'ubicacion' => 'Ubicación',
+	
+	/** ServiceOficial **/
+	'sitio_web' => 'Sitio Web',
+	'tipodeorden' => 'Tipo de orden',
 );

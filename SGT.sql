@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-01-2013 a las 01:44:45
+-- Tiempo de generación: 12-01-2013 a las 01:28:06
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `email` varchar(50) DEFAULT NULL,
   `observaciones` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -133,12 +133,12 @@ CREATE TABLE IF NOT EXISTS `ordenes` (
   `nro_factura` varchar(50) DEFAULT NULL,
   `fecha_compra` date DEFAULT NULL,
   `falla` varchar(255) NOT NULL,
-  `reparacion` text NOT NULL,
-  `fecha_ingreso` date NOT NULL,
-  `fecha_presupuesto` date NOT NULL,
-  `fecha_reparado` date NOT NULL,
-  `fecha_prometido` date NOT NULL,
-  `fecha_entrega` date NOT NULL,
+  `reparacion` text,
+  `fecha_ingreso` date DEFAULT NULL,
+  `fecha_presupuesto` date DEFAULT NULL,
+  `fecha_reparado` date DEFAULT NULL,
+  `fecha_prometido` date DEFAULT NULL,
+  `fecha_entrega` date DEFAULT NULL,
   `estado` varchar(50) NOT NULL,
   PRIMARY KEY (`nro_orden`),
   KEY `id_usuario` (`id_cliente`,`id_equipo`),

@@ -20,24 +20,24 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nro_serie')); ?>:</b>
 	<?php echo CHtml::encode($data->nro_serie); ?>
 	<br />
-
+<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('adquirido_en')); ?>:</b>
 	<?php echo CHtml::encode($data->adquirido_en); ?>
 	<br />
-
+*/ ?>
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nro_factura')); ?>:</b>
 	<?php echo CHtml::encode($data->nro_factura); ?>
 	<br />
-
+<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_compra')); ?>:</b>
 	<?php echo CHtml::encode($data->fecha_compra); ?>
 	<br />
-
-	<?php /*
+*/?>
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('falla')); ?>:</b>
 	<?php echo CHtml::encode($data->falla); ?>
 	<br />
-
+<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('reparacion')); ?>:</b>
 	<?php echo CHtml::encode($data->reparacion); ?>
 	<br />
