@@ -17,4 +17,6 @@ $this->menu=array(
 
 <h1><?php echo (Yii::t('general', 'create').' '.Yii::t('general', 'orden'));?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,
+			'model_cliente'=>$model_cliente,
+			'model_equipo'=>$model_equipo,)); ?>

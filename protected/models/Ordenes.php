@@ -87,8 +87,8 @@ class Ordenes extends CActiveRecord
 	{
 		return array(
 			'nro_orden' => Yii::t('general', 'nro_orden'),
-			'id_cliente' => 'Id Cliente',
-			'id_equipo' => 'Id Equipo',
+			'id_cliente' => Yii::t('general', 'cliente'),
+			'id_equipo' => Yii::t('general', 'equipo'),
 			'nro_serie' => Yii::t('general', 'nro_serie'),
 			'adquirido_en' => Yii::t('general', 'adquirido_en'),
 			'nro_factura' => Yii::t('general', 'nro_factura'),

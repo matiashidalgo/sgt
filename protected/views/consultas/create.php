@@ -4,10 +4,10 @@
 
 $this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'consultas') . ' - ' . Yii::t('general', 'create');
 
-$this->breadcrumbs=array(
+/* $this->breadcrumbs=array(
 	Yii::t('general', 'consultas')=>array('index'),
 	Yii::t('general', 'create'),
-);
+); */
 
 /*$this->menu=array(
 	array('label'=>'List Consultas', 'url'=>array('index')),

@@ -10,11 +10,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_cliente')); ?>:</b>
-	<?php echo CHtml::encode($data->id_cliente); ?>
+	<?php echo CHtml::encode($data->idCliente->AllConcat); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_equipo')); ?>:</b>
-	<?php echo CHtml::encode($data->id_equipo); ?>
+	<?php echo CHtml::encode($data->idEquipo->AllConcat); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nro_serie')); ?>:</b>

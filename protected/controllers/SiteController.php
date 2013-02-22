@@ -106,4 +106,33 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	public function actionConsultarOrden()
+	{
+		$model_orden = new Ordenes;
+		$model_cliente = new Clientes;
+		
+		$model_orden->unsetAttributes();
+		//$model_cliente->unsetAttributes();
+		
+		if(isset($_GET['Ordenes']))
+		{
+			$model_orden = Ordenes::model()->findByPk($_GET['Ordenes']['nro_orden']);
+			if($model_orden===null) 
+			{
+				$this->render('/site/error', array(	'code'=>'', 'message' => Yii::t('general', 'error_nro_orden_invalid')));
+			} else {
+				//$model_cliente = Clientes::model()->findByPk($model_orden->id_cliente);
+				if($model_orden->idCliente->password === $_GET['Clientes']['password'])
+				{
+
+					$this->render('/site/consultarOrden', array('model_orden'=>$model_orden));
+				} else {
+					$this->render('/site/error', array(	'code'=>'', 'message' => Yii::t('general', 'error_password_invalid')));
+				}
+			}
+		} else {
+			$this->render('/site/consultaDeOrden', array('model_orden'=>$model_orden,'model_cliente'=>$model_cliente));
+		}
+	}
 }

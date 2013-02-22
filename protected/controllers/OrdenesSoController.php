@@ -73,7 +73,12 @@ class OrdenesSoController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
+		
+		if(isset($_GET['nro_orden']))
+		{
+			$model->nro_orden = $_GET['nro_orden'];
+		}
+		
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -86,7 +91,10 @@ class OrdenesSoController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		
 		$model=$this->loadModel($id);
+		
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

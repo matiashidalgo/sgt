@@ -32,7 +32,7 @@ class OrdenesController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','admin','delete'),
+				'actions'=>array('index','create','update','admin','delete','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo'),
 				'users'=>array('@'),
 			),
 			/* array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -63,19 +63,29 @@ class OrdenesController extends Controller
 	public function actionCreate()
 	{
 		$model=new Ordenes;
-
+		$model_cliente = new Clientes;
+		$model_equipo = new Equipos;
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Ordenes']))
 		{
 			$model->attributes=$_POST['Ordenes'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->nro_orden));
+			if($model->save()){
+				if(isset($_POST['service_oficial']))
+				{
+					$this->redirect(array('/ordenesso/create','nro_orden'=>$model->nro_orden));
+				} else {
+					$this->redirect(array('view','id'=>$model->nro_orden));
+				}
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'model_cliente'=>$model_cliente,
+			'model_equipo'=>$model_equipo,
 		));
 	}
 
@@ -88,6 +98,8 @@ class OrdenesController extends Controller
 	{
 		$model=$this->loadModel($id);
 
+		$model_cliente = new Clientes;
+		$model_equipo = new Equipos;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -95,11 +107,24 @@ class OrdenesController extends Controller
 		{
 			$model->attributes=$_POST['Ordenes'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->nro_orden));
+				if(isset($_POST['service_oficial']))
+				{
+					$data = OrdenesSo::model()->find('nro_orden=:nro_orden',array(':nro_orden'=>$id));
+					if($data===null)
+					{
+						$this->redirect(array('/ordenesso/create','nro_orden'=>$model->nro_orden));
+					} else {
+						$this->redirect(array('/ordenesso/update','id'=>$data->id));
+					}
+				} else {
+					$this->redirect(array('view','id'=>$model->nro_orden));
+				}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'model_cliente'=>$model_cliente,
+			'model_equipo'=>$model_equipo,
 		));
 	}
 
@@ -169,5 +194,69 @@ class OrdenesController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionCreaClienteRap()
+	{
+		$model = new Clientes;
+		$retorna = "Fallo";
+		
+		if (Yii::app()->request->isAjaxRequest){
+			$model->cuenta = $_POST['cuenta'];
+			$model->password = $_POST['password'];
+			$model->nombre = $_POST['nombre'];
+			$model->apellido = $_POST['apellido'];
+			$model->direccion = $_POST['direccion'];
+			$model->telefono = $_POST['telefono'];
+			$model->celular = $_POST['celular'];
+			$model->ciudad = $_POST['ciudad'];
+			$model->email = $_POST['email'];
+			$model->observaciones = $_POST['observaciones'];
+			$model->admin = 0;
+			
+			$model->save();
+			
+			$retorna = "<option value=" . $model->id . " selected=selected>" .$model->AllConcat . "</option>";
+		}
+		
+		echo $retorna;
+	}
+	
+	public function actionCreaEquipoRap()
+	{
+		$model = new Equipos;
+		$retorna = "Fallo";
+		
+		if (Yii::app()->request->isAjaxRequest){
+			$model->tipo = $_POST['tipo'];
+			$model->modelo = $_POST['modelo'];
+			$model->marca = $_POST['marca'];
+						
+			$model->save();
+			
+			$retorna = "<option value=" . $model->id . " selected=selected>" .$model->AllConcat . "</option>";
+		}
+		
+		echo $retorna;
+	}
+	
+	public function actionMuestraCliente()
+	{		
+		$data = Clientes::model()->findByPk($_POST['Ordenes']['id_cliente']);
+		
+		$this->renderPartial('/clientes/view', array(
+			'model' => $data,
+		));
+	}
+	
+	public function actionMuestraEquipo()
+	{		
+		
+		$data = Equipos::model()->findByPk($_POST['Ordenes']['id_equipo']);
+		
+		$this->renderPartial('/equipos/view', array(
+			'model' => $data,
+		));
+		
 	}
 }

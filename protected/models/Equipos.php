@@ -95,4 +95,9 @@ class Equipos extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getAllConcat()
+	{
+		return $this->id . " - " . $this->tipo . " - " . $this->modelo . " - " . $this->marca;
+	}
 }

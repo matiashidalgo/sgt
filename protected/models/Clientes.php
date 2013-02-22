@@ -124,4 +124,9 @@ class Clientes extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getAllConcat()
+	{
+		return $this->id . " - " . $this->nombre . " - " . $this->apellido . " - " . $this->direccion . " - " . $this->telefono . " - " . $this->celular;
+	}
 }

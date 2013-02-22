@@ -232,7 +232,7 @@ div.search-form
 /*** AGREGADO POR MATIAS H. ***/
 
 body{
-	background: url("../images/fondo.jpg") repeat scroll 50% 50% #4C4C4C;
+	background: url("../images/fondo.png") repeat scroll 50% 50% #4C4C4C;
 }
 
 #logo
@@ -241,13 +241,13 @@ body{
 }
 
 #header{
-	border-top: 3px solid #B8EC79;
+	border-top: 3px solid #6ca724;
 	border-radius: 6px 6px 0px 0px;
 }
 
 #page {
 	border-radius: 10px 10px 10px 10px;
-	border-top: 1px solid #9FDA58;
+	border: 1px solid #6ca724;
 	background-color:#F1F1F1;
 }
 
@@ -314,7 +314,7 @@ body{
 
 .enterprise {
 	text-align:center;
-	font-size: 200%;
+	font-size: 270%;
 }
 
 .menu-inferior {

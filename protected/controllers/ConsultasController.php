@@ -71,12 +71,14 @@ class ConsultasController extends Controller
 		{
 			$model->attributes=$_POST['Consultas'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->render('exito',array(
+					'model'=>$model,
+				));
+		} else {
+			$this->render('create',array(
+				'model'=>$model,
+			));
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
 	}
 
 	/**

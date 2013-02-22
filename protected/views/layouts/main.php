@@ -31,8 +31,8 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-		<div class="enterprise"><?php echo CHtml::encode(Yii::t('general', 'enterprise'))?></div>
+		<div class="enterprise"><?php echo CHtml::encode(Yii::t('general', 'enterprise')); ?></div>
+		<div id="logo"> <?php echo CHtml::encode(Yii::t('general', 'advertisment'));?> <br/> <?php echo CHtml::encode(Yii::t('general', 'equiposReparados'));?> </div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -41,9 +41,9 @@
 				array('label'=>Yii::t('general', 'home'), 'url'=>array('/site/index')),
 				
 				// Opciones para usuario visitante
-				array('label'=>Yii::t('general', 'query'), 'url'=>array('/ordenes/consulta'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>Yii::t('general', 'query'), 'url'=>array('/site/consultarOrden'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>Yii::t('general', 'about'), 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>Yii::t('general', 'contact'), 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>Yii::t('general', 'contact'), 'url'=>array('/consultas/create'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>Yii::t('general', 'login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				
 				// Opciones para usuario logeado
@@ -70,6 +70,7 @@
 
 	<div id="footer">
 		<div class="menu-inferior">
+			<!-- PARA IMPLEMENTAR UN MENU INFERIOR -->
 		</div>
 		<div class="credits">
 		Copyright &copy; <?php echo date('Y'); ?> by Matias Hidalgo.<br/>

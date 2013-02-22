@@ -27,3 +27,159 @@ blockquote {margin:1.5em;padding:1em;font-style:italic;font-size:.9em;}
 .hide {display:none;}
 a:link, a:visited {background:transparent;font-weight:700;text-decoration:underline;}
 a:link:after, a:visited:after {content:" (" attr(href) ")";font-size:90%;}
+
+/* consultarOrden.css */
+.ordenDeReparacion {
+	background-color: white;
+    border: 2px solid #1E1E1E;
+    color: #1E1E1E;
+    height: 600px;
+    margin: 20px 10px;
+    width: 98%;
+	font-family: Times New Roman;
+}
+
+.ordenDeReparacion div {
+    float: left;
+}
+
+.ordenDeReparacion .cabecera {
+    border: 2px solid #6D6D6D;
+    border-radius: 5px 5px 5px 5px;
+    height: 100px;
+    margin: 10px 11px;
+    width: 97%;
+}
+
+.ordenDeReparacion .cabecera .taller {
+    height: 90%;
+    margin: 10px 20px 0;
+    width: 40%;
+}
+
+.ordenDeReparacion .cabecera .taller .nombre-taller {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    width: 90%;
+}
+
+.ordenDeReparacion .cabecera .taller .direccion {
+    text-align: center;
+    width: 90%;
+	padding-top: 10px;
+}
+
+.ordenDeReparacion .cabecera .taller .tel-ubicacion {
+    width: 90%;
+	padding-top: 4px;
+}
+
+.ordenDeReparacion .cabecera .documento {
+    width: 7%;
+	height: 100%;
+}
+
+.ordenDeReparacion .cabecera .documento .clase {
+    border: 1px solid #6D6D6D;
+    font-size: 28pt;
+    font-weight: bold;
+    height: 50%;
+    text-align: center;
+    width: 99%;
+	border-top:none;
+}
+
+.ordenDeReparacion .cabecera .documento .tipo-doc {
+	font-size: 7pt;
+    text-align: center;
+	width:100%;
+}
+
+.ordenDeReparacion .cabecera .orden {
+    float: right;
+    margin: 10px 10px 0;
+    width: 40%;
+}
+
+.ordenDeReparacion .cabecera .orden .titulo-orden {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.ordenDeReparacion .cabecera .orden .num-orden {
+    font-size: 13pt;
+    font-weight: bold;
+    padding: 14px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.ordenDeReparacion .cabecera .orden .fecha {
+    font-size: 11pt;
+    text-align: center;
+    width: 100%;
+}
+
+.ordenDeReparacion .datos-cliente {
+    border: 2px dotted #6D6D6D;
+    border-radius: 5px 5px 5px 5px;
+    height: 100px;
+    margin: 10px 0 10px 10px;
+    padding: 4px 0 4px 4px;
+    width: 97%;
+}
+
+.ordenDeReparacion .datos-cliente div {
+    font-size: 12pt;
+    letter-spacing: 4px;
+    width: 100%;
+	padding-bottom: 5px;
+}
+
+.ordenDeReparacion .datos-equipo {
+    height: 150px;
+    border: 2px dotted #6D6D6D;
+    border-radius: 5px 5px 5px 5px;
+    margin: 10px 0 10px 10px;
+    padding: 4px 0 4px 4px;
+    width: 97%;
+}
+
+.ordenDeReparacion .datos-equipo div {
+    font-size: 12pt;
+    letter-spacing: 4px;
+    width: 100%;
+	padding-bottom: 5px;
+}
+
+.ordenDeReparacion .detalle {
+    border: 2px dotted #6D6D6D;
+    border-radius: 5px 5px 5px 5px;
+    height: 100px;
+    margin: 10px 0 10px 10px;
+    padding: 4px 0 4px 4px;
+    width: 97%;
+}
+
+.ordenDeReparacion .detalle div {
+    font-size: 12pt;
+    letter-spacing: 4px;
+    width: 100%;
+	padding-bottom: 5px;
+}
+
+.ordenDeReparacion .fechas {
+    padding: 8px 12px 0 14px;
+    width: 97%;
+	border-top: 2px dotted #6D6D6D;
+}
+
+.ordenDeReparacion .fechas div {
+    font-size: 10pt;
+    letter-spacing: 2px;
+    padding-bottom: 5px;
+    width: 32%;
+}

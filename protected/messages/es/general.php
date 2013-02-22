@@ -18,9 +18,15 @@ return array(
 	'save' => "Guardar",
 	'add' => "Agregar",
 	'finish' => "Finalizar",
+	
+	/**** ERRORES ****/
+	
 	'invalid_user' => "El usuario es inválido.", 
 	'invalid_password' => "La contraseña es incorrecta.",
 	'user_denegate' => "Su usuario no tiene permiso para acceder al sistema",
+	'error_password_invalid' => 'La contraseña es incorrecta',
+	'error_nro_orden_invalid' => 'La orden no existe',
+	
 	'login' => "Acceder",
 	'logout' => "Desconectarse",
 	'my_panel' => "Mi Panel",
@@ -45,6 +51,8 @@ return array(
 	'error_empty' => " no puede estar vacío",
 	'error_numerical' => " debe ser un número",
 	'admin' => "Administrar",
+	'advertisment' => 'Reparacion de TV. y Monitores ',
+	'equiposReparados' => 'TRC, Plasma, LCD y LED',
 	
 	/*** Etiquetas para nombrar los objetos/tablas ***/
 	
@@ -85,16 +93,17 @@ return array(
 	'tipo' => 'Tipo',
 	'modelo' => 'Modelo',
 	'marca' => 'Marca',
+	'select_equipo' => 'Seleccione un equipo',
 	
 	/** Noticias **/
 	'noticia' => 'Noticia',
 	'fecha' => 'Fecha',
 	
 	/** Ordenes **/
-	'nro_orden' => 'Nro Orden',
-	'nro_serie' => 'Nro Serie',
+	'nro_orden' => 'Nro de Orden',
+	'nro_serie' => 'Nro de Serie',
 	'adquirido_en' => 'Adquirido En',
-	'nro_factura' => 'Nro Factura',
+	'nro_factura' => 'Nro de Factura',
 	'fecha_compra' => 'Fecha de Compra',
 	'falla' => 'Falla',
 	'reparacion' => 'Reparación',
@@ -104,6 +113,10 @@ return array(
 	'fecha_prometido' => 'Fecha de Prometido',
 	'fecha_entrega' => 'Fecha de Entrega',
 	'estado' => 'Estado',
+	'select_cliente' => 'Seleccione un cliente',
+	'has_service_oficial' => '¿Pertenece a un Service Oficial?',
+	'consultaDeOrden' => 'Consulta de Orden de Reparación',
+	'consultar' => 'Consultar Orden',
 	
 	/** OrdenesSo **/
 	'id_serviceo' => 'Service Oficial',
