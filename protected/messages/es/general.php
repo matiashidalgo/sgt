@@ -139,8 +139,8 @@ return array(
     'Date To' => 'Fecha desde',
     'Date From' => 'Fecha hasta',
     'Statistic' => 'Resultado',
-    'date_to' => 'Fecha desde',
-    'date_from' => 'Fecha hasta',
+    'date_to' => 'Fecha hasta',
+    'date_from' => 'Fecha desde',
     'statistic' => 'Resultado',
     'must be saved' => 'Guardar estadistica',
     'generate statistic' => 'Generar estadistica'
