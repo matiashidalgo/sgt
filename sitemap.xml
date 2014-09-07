@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <url>
+
+      <loc>http://www.serviceleotv.com.ar/</loc>
+
+      <lastmod>2013-05-22</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.8</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://serviceleotv.com.ar/index.php/site/consultarOrden</loc>
+
+	  <lastmod>2013-05-22</lastmod>
+	  
+      <changefreq>monthly</changefreq>
+
+	  <priority>0.8</priority>
+	  
+   </url>
+
+   <url>
+
+      <loc>http://serviceleotv.com.ar/index.php/site/page?view=about</loc>
+
+      <lastmod>2013-05-22</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+	  <priority>0.8</priority>
+	  
+   </url>
+
+   <url>
+
+      <loc>http://serviceleotv.com.ar/index.php/consultas/create</loc>
+
+      <lastmod>2013-05-22</lastmod>
+
+	  <changefreq>monthly</changefreq>
+	  
+      <priority>0.3</priority>
+
+   </url>
+
+   <url>
+
+      <loc>http://serviceleotv.com.ar/index.php/site/login</loc>
+
+      <lastmod>2013-05-22</lastmod>
+
+	  <changefreq>monthly</changefreq>
+	  
+	  <priority>0.3</priority>
+	  
+   </url>
+
+</urlset>

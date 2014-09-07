@@ -59,7 +59,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'celular'); ?>
-		<?php echo $form->textField($model,'celular',array('size'=>13,'maxlength'=>13)); ?>
+		<?php echo $form->textField($model,'celular',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'celular'); ?>
 	</div>
 

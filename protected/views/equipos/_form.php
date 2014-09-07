@@ -17,19 +17,64 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'tipo'); ?>
-		<?php echo $form->textField($model,'tipo',array('size'=>30,'maxlength'=>30)); ?>
+		<?php
+		
+			$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+				'name'=>'Equipos[tipo]',
+				'sourceUrl'=>'sugerenciasTipo',
+				//'source'=>array('ac1','ac2','ac3'),
+				// additional javascript options for the autocomplete plugin
+				'options'=>array(
+					'minLength'=>'2',
+					'maxLength'=>'30',
+					'size'=>'30',
+				),
+				
+			));
+		
+		?>
 		<?php echo $form->error($model,'tipo'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'modelo'); ?>
-		<?php echo $form->textField($model,'modelo',array('size'=>30,'maxlength'=>30)); ?>
+		<?php
+		
+			$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+				'name'=>'Equipos[modelo]',
+				'sourceUrl'=>'sugerenciasModelo',
+				//'source'=>array('ac1','ac2','ac3'),
+				// additional javascript options for the autocomplete plugin
+				'options'=>array(
+					'minLength'=>'2',
+					'maxLength'=>'30',
+					'size'=>'30',
+				),
+				
+			));
+		
+		?>
 		<?php echo $form->error($model,'modelo'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'marca'); ?>
-		<?php echo $form->textField($model,'marca',array('size'=>30,'maxlength'=>30)); ?>
+		<?php
+		
+			$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+				'name'=>'Equipos[marca]',
+				'sourceUrl'=>'sugerenciasMarca',
+				//'source'=>array('ac1','ac2','ac3'),
+				// additional javascript options for the autocomplete plugin
+				'options'=>array(
+					'minLength'=>'2',
+					'maxLength'=>'30',
+					'size'=>'30',
+				),
+				
+			));
+		
+		?>
 		<?php echo $form->error($model,'marca'); ?>
 	</div>
 

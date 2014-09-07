@@ -37,6 +37,7 @@ class Noticias extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('noticia, fecha', 'required'),
+			array('fecha', 'default' ,'setOnEmpty'=>true, 'value' => null),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, noticia, fecha', 'safe', 'on'=>'search'),

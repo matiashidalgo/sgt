@@ -27,9 +27,55 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$criteriaNoticias = new CDbCriteria;
+		
+		$criteriaNoticias->limit = 3;
+		$criteriaNoticias->order = 'id DESC';
+		
+		$tresNoticias = new CActiveDataProvider('Noticias',array(
+				'criteria'=>$criteriaNoticias,
+			));
+		$tresNoticias->setPagination(false);
+		
+		if(!Yii::app()->user->isGuest){
+			// Consulta para mostrar las ordenes que esten a 10 dias de vencerce
+			$criteriaOrdenes = new CDbCriteria;
+			$criteriaOrdenes->condition='fecha_entrega IS NULL';
+			
+			$column = "fecha_prometido";
+			$valueStart = date('Y-m-d');
+			$valueEnd = date('Y-m-d', strtotime('+10 day'));
+			
+			$criteriaOrdenes->addBetweenCondition($column, $valueStart, $valueEnd, 'AND'); //addCondition('fecha_prometido < '.$now);
+			
+			$criteriaOrdenes->order = 'nro_orden DESC';
+			
+			$alerta_ordenes_10_dias = new CActiveDataProvider('Ordenes',array(
+				'criteria'=>$criteriaOrdenes,
+			));
+			
+			// Consulta para mostrar todas las ordenes vencidas
+			$criteriaOrdenes_vencidas = new CDbCriteria;
+			
+			$criteriaOrdenes_vencidas->condition='fecha_prometido<:hoy AND fecha_entrega IS NULL';
+			$criteriaOrdenes_vencidas->params=array(
+													':hoy'=>date('Y-m-d'),
+													);
+			$criteriaOrdenes_vencidas->order = 'nro_orden DESC';
+			
+			$alerta_ordenes_vencidas = new CActiveDataProvider('Ordenes',array(
+				'criteria'=>$criteriaOrdenes_vencidas,
+			));
+			
+			$this->render('index', array('tresNoticias'=>$tresNoticias,'alerta_ordenes_10_dias'=>$alerta_ordenes_10_dias,'alerta_ordenes_vencidas'=>$alerta_ordenes_vencidas));
+		} else {
+			$alerta_ordenes_10_dias = null;
+			$alerta_ordenes_vencidas = null;
+			// renders the view file 'protected/views/site/index.php'
+			// using the default layout 'protected/views/layouts/main.php'
+			$this->render('index', array('tresNoticias'=>$tresNoticias,'alerta_ordenes_10_dias'=>$alerta_ordenes_10_dias,'alerta_ordenes_vencidas'=>$alerta_ordenes_vencidas));
+		}
+		
 	}
 
 	/**
@@ -51,6 +97,7 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+		/*
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
@@ -70,6 +117,9 @@ class SiteController extends Controller
 			}
 		}
 		$this->render('contact',array('model'=>$model));
+		*/
+		
+		$this->redirect(Yii::app()->baseUrl . '/index.php/consultas/create');
 	}
 
 	/**

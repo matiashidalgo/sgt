@@ -32,7 +32,7 @@ class EquiposController extends Controller
 				'users'=>array('*'),
 			), */
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('index','view','create','update','admin','delete','sugerenciasTipo','sugerenciasMarca','sugerenciasModelo'),
 				'users'=>array('@'),
 			),
 			/* array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -122,7 +122,12 @@ class EquiposController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Equipos');
+		$dataProvider=new CActiveDataProvider('Equipos',array ( 
+			'criteria' => array ( 
+				'order' => 'id DESC' 
+				)
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -169,5 +174,59 @@ class EquiposController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionSugerenciasTipo($term)
+	{
+		//the $term parameter is what the user typed in on the control
+		$model=Equipos::model()->findAll(array(
+			'select'=>'t.tipo',
+			'distinct'=>true,
+		));
+		
+		foreach ($model as $equipo)
+		{
+			$tipos[] = $equipo->tipo;
+		}
+		//send back an array of data:
+		echo CJSON::encode($tipos);
+
+		Yii::app()->end(); 
+	}
+	
+	public function actionSugerenciasModelo($term)
+	{
+		//the $term parameter is what the user typed in on the control
+		$model=Equipos::model()->findAll(array(
+			'select'=>'t.modelo',
+			'distinct'=>true,
+		));
+		
+		foreach ($model as $equipo)
+		{
+			$modelos[] = $equipo->modelo;
+		}
+		//send back an array of data:
+		echo CJSON::encode($modelos);
+
+		Yii::app()->end(); 
+	}
+	
+	public function actionSugerenciasMarca($term)
+	{
+		//the $term parameter is what the user typed in on the control
+		$model=Equipos::model()->findAll(array(
+			'select'=>'t.marca',
+			'distinct'=>true,
+		));
+		
+		foreach ($model as $equipo)
+		{
+			$marcas[] = $equipo->marca;
+		}
+		//send back an array of data:
+		echo CJSON::encode($marcas);
+
+		Yii::app()->end(); 
 	}
 }

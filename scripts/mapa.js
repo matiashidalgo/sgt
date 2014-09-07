@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var taller = new google.maps.LatLng(-37.329466047114906, -59.12573039531708);
+	var taller = new google.maps.LatLng(-37.324511, -59.143644);
 
 	
 	var Opciones = {

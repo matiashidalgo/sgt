@@ -19,16 +19,70 @@ Yii::app()->clientScript->registerScript('popup', "
 	});
 	
 	$('.crear-equipo').click(function(){
+		/*
 		$('.popup').html($('.equipo').html())
 			.dialog('option', 'title', 'Formulario para crear rapidamente un Equipo')
 			.dialog('open');
 		$('.equipo').html(' ');
+		*/
+		$('.equipo').slideToggle('slow');
 		
 	});
 	
 	$('.cancel-equipo').live('click',function(){
+		/*
 		$('.equipo').html($('.popup').html());
 		$('.popup').dialog('close');
+		*/
+		$('.equipo').slideToggle('slow');
+	});
+	
+	$('#fecha_compra').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_compra').val('');
+		}
+	
+	});
+	
+	$('#fecha_ingreso').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_ingreso').val('');
+		}
+	
+	});
+	
+	$('#fecha_prometido').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_prometido').val('');
+		}
+	
+	});
+	
+	$('#fecha_entrega').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_entrega').val('');
+		}
+	
+	});
+	
+	$('#fecha_reparado').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_reparado').val('');
+		}
+	
+	});
+	
+	$('#fecha_presupuesto').focusout(function(){
+		
+		if($(this).val() == ''){
+			$('#alternate_fecha_presupuesto').val('');
+		}
+	
 	});
 	");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -108,6 +162,105 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 		?>
 		<?php echo $form->error($model,'id_equipo'); ?>
 		
+		
+		<div class="equipo" style="display:none">
+	
+				<div class="row">
+					<?php echo $form->labelEx($model_equipo,'tipo'); ?>
+					<?php //echo $form->textField($model_equipo,'tipo',array('size'=>30,'maxlength'=>30)); ?>
+					<?php
+				
+						$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+							'name'=>'Equipos[tipo]',
+							//'sourceUrl'=>'sugerenciasModelo',
+							'source'=>$autocompletes['Equipos_Tipos'],
+							// additional javascript options for the autocomplete plugin
+							'options'=>array(
+								'minLength'=>'2',
+								'maxLength'=>'30',
+								'size'=>'30',
+							),
+							'htmlOptions' => array(
+								'id'=>'Equipos_tipo',
+							),
+						));
+					
+					?>
+					<?php echo $form->error($model_equipo,'tipo'); ?>
+				</div>
+
+				<div class="row">
+					<?php echo $form->labelEx($model_equipo,'modelo'); ?>
+					<?php //echo $form->textField($model_equipo,'modelo',array('size'=>30,'maxlength'=>30)); ?>
+					<?php
+				
+						$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+							'name'=>'Equipos[modelo]',
+							//'sourceUrl'=>'sugerenciasModelo',
+							'source'=>$autocompletes['Equipos_Modelos'],
+							// additional javascript options for the autocomplete plugin
+							'options'=>array(
+								'minLength'=>'2',
+								'maxLength'=>'30',
+								'size'=>'30',
+							),
+							'htmlOptions' => array(
+								'id'=>'Equipos_modelo',
+							),
+						));
+					
+					?>
+					<?php echo $form->error($model_equipo,'modelo'); ?>
+				</div>
+
+				<div class="row">
+					<?php echo $form->labelEx($model_equipo,'marca'); ?>
+					<?php //echo $form->textField($model_equipo,'marca',array('size'=>30,'maxlength'=>30)); ?>
+					<?php
+				
+						$this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+							'name'=>'Equipos[marcas]',
+							//'sourceUrl'=>'sugerenciasModelo',
+							'source'=>$autocompletes['Equipos_Marcas'],
+							// additional javascript options for the autocomplete plugin
+							'options'=>array(
+								'minLength'=>'2',
+								'maxLength'=>'30',
+								'size'=>'30',
+							),
+							'htmlOptions' => array(
+								'id'=>'Equipos_marca',
+							),
+						));
+					
+					?>
+					<?php echo $form->error($model_equipo,'marca'); ?>
+				</div>
+				
+				<?php 
+				// Para poder Crear un equipo que no esta
+					echo CHtml::ajaxButton(
+						Yii::t('general', 'save'),
+						array('ordenes/creaEquipoRap'),
+						array('data'=>array(
+										 'tipo'=>'js:$("#Equipos_tipo").val()',
+										 'modelo'=>'js:$("#Equipos_modelo").val()',
+										 'marca'=>'js:$("#Equipos_marca").val()',
+									 ),
+							   'type'=>'POST',
+							   'success'=>'function(data){
+									$("#Ordenes_id_equipo").append(data);
+									/*
+									$(".equipo").html($(".popup").html());
+									$(".popup").dialog("close");
+									*/
+								}'
+							)
+					);
+					
+					echo CHtml::Button(Yii::t('general', 'cancel'),Array('class' => 'cancel-equipo'));
+				?>
+		</div>
 		<div class="Datos-equipo" style="display:none;">
 		
 		</div>
@@ -173,7 +326,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 						'name' => 'fecha_ingreso',
 						'value' => isset($model->fecha_ingreso) && !empty($model->fecha_ingreso) ? 
 									Yii::app()->locale->dateFormatter->formatDateTime(
-										$model->fecha_ingreso,'medium',null) : date('d-m-Y'),
+										$model->fecha_ingreso,'medium',null) : date('d/m/Y'),
 						'options' => array(
 							'changeMonth' => true,
 							'changeYear' => true,
@@ -186,7 +339,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 						'language'=> Yii::app()->getLanguage(),	
 						
 		),true); ?>
-		<?php echo $form->hiddenField($model, 'fecha_ingreso', array('id'=> 'alternate_fecha_ingreso'));?>
+		<?php echo $form->hiddenField($model, 'fecha_ingreso', array('id'=> 'alternate_fecha_ingreso','value' => isset($model->fecha_ingreso) && !empty($model->fecha_ingreso) ? $model->fecha_ingreso : date('Y-m-d')));?>
 		<?php echo $form->error($model,'fecha_ingreso'); ?>
 	</div>
 
@@ -204,7 +357,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 							'altField' =>  '#alternate_fecha_presupuesto', 
 							'altFormat' => 'yy-mm-dd',	 
 							/*'minDate'=>0,*/	
-							'maxDate'=>0,
+							/* 'maxDate'=>0, */
 							'showAnim'=>'slide',
 						),	
 						'language'=> Yii::app()->getLanguage(),										
@@ -289,6 +442,12 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'precio'); ?>
+		<?php echo $form->textField($model,'precio',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'precio'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo Yii::t('general', 'has_service_oficial'); ?>
 		<?php echo CHtml::checkBox('service_oficial',0,array('size'=>50,'maxlength'=>50,'checked'=>'uncheched')); ?>
 	</div>
@@ -341,7 +500,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 		<div class="row">
 			<?php echo $form->labelEx($model_cliente,'celular'); ?>
-			<?php echo $form->textField($model_cliente,'celular',array('size'=>13,'maxlength'=>13)); ?>
+			<?php echo $form->textField($model_cliente,'celular',array('size'=>20,'maxlength'=>20)); ?>
 			<?php echo $form->error($model_cliente,'celular'); ?>
 		</div>
 
@@ -393,47 +552,6 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 		?>
 </div>
 
-<div class="equipo" style="display:none;">
-	
-		<div class="row">
-			<?php echo $form->labelEx($model_equipo,'tipo'); ?>
-			<?php echo $form->textField($model_equipo,'tipo',array('size'=>30,'maxlength'=>30)); ?>
-			<?php echo $form->error($model_equipo,'tipo'); ?>
-		</div>
 
-		<div class="row">
-			<?php echo $form->labelEx($model_equipo,'modelo'); ?>
-			<?php echo $form->textField($model_equipo,'modelo',array('size'=>30,'maxlength'=>30)); ?>
-			<?php echo $form->error($model_equipo,'modelo'); ?>
-		</div>
-
-		<div class="row">
-			<?php echo $form->labelEx($model_equipo,'marca'); ?>
-			<?php echo $form->textField($model_equipo,'marca',array('size'=>30,'maxlength'=>30)); ?>
-			<?php echo $form->error($model_equipo,'marca'); ?>
-		</div>
-		
-		<?php 
-		// Para poder Crear un equipo que no esta
-			echo CHtml::ajaxButton(
-                Yii::t('general', 'save'),
-                array('ordenes/creaEquipoRap'),
-                array('data'=>array(
-                                 'tipo'=>'js:$("#Equipos_tipo").val()',
-                                 'modelo'=>'js:$("#Equipos_modelo").val()',
-								 'marca'=>'js:$("#Equipos_marca").val()',
-                             ),
-                       'type'=>'POST',
-					   'success'=>'function(data){
-							$("#Ordenes_id_equipo").append(data);
-							$(".equipo").html($(".popup").html());
-							$(".popup").dialog("close");
-						}'
-                    )
-            );
-			
-			echo CHtml::Button(Yii::t('general', 'cancel'),Array('class' => 'cancel-equipo'));
-		?>
-</div>
 
 </div><!-- form -->

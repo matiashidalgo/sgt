@@ -70,11 +70,65 @@ class ConsultasController extends Controller
 		if(isset($_POST['Consultas']))
 		{
 			$model->attributes=$_POST['Consultas'];
+			
+			$name='=?UTF-8?B?'.base64_encode($model->nombre).'-'.base64_encode($model->apellido).'?=';
+			$subject='=?UTF-8?B?'.base64_encode('Nueva consulta en ServiceLeoTV').'?=';
+			$headers="From: $name <{$model->email}>\r\n".
+				"Reply-To: {$model->email}\r\n".
+				"MIME-Version: 1.0\r\n".
+				"Content-type: text/plain; charset=UTF-8";
+
+			mail(Yii::app()->params['adminEmail'],$subject,$model->consulta,$headers);
+            mail(Yii::app()->params['adminEmailAlternative'],$subject,$model->consulta,$headers);
 			if($model->save())
 				$this->render('exito',array(
 					'model'=>$model,
 				));
-		} else {
+		} elseif (isset($_POST['Comentario'])) {
+            $userName = $_POST['Comentario']['name'];
+            if (!$userName) {
+                $userName = "Sin Nombre";
+            }
+            $email = $_POST['Comentario']['email'];
+            if (!$email) {
+                $email = "no-mail@serviceleotv.site88.net";
+            }
+            $phone = $_POST['Comentario']['phone'];
+            $comment = $_POST['Comentario']['comentario'];
+            $orderId = $_POST['Comentario']['order_id'];
+
+            $name='=?UTF-8?B?'.base64_encode($userName).'?=';
+            $subject='=?UTF-8?B?'.base64_encode('Nueva consulta en la orden de reparacion '.$orderId.' en ServiceLeoTV').'?=';
+            $headers="From: $name <{$email}>\r\n".
+                "Reply-To: {$email}\r\n".
+                "MIME-Version: 1.0\r\n".
+                "Content-type: text/plain; charset=UTF-8";
+
+            $content = "
+                El cliente ".$userName." le envio el siguiente comentario en la orden de reparacion numero ".$orderId.":\n
+                ".$comment."\n
+
+                Los datos del cliente obtenidos del SGC son:\n
+                Nombre completo: ".$userName."\n
+                ".$phone."\n
+                Email: ".$email." (si el correo es no-mail@serviceleotv.site88.net es porque el usuario no tenia ningun email cargado)\n
+                ".$phone."\n
+
+                Este Informe fue confeccionado por el SGT
+            ";
+            $result = mail(Yii::app()->params['adminEmail'],$subject,$content,$headers);
+            mail(Yii::app()->params['adminEmailAlternative'],$subject,$content,$headers);
+            if($result) {
+                echo "SEND";
+            } else {
+                echo "Ocurrio un error al intentar enviar su comentario, estamos buscando una solucion al problema, de todas maneras su comentario quedará registrado en nuestra base de datos";
+                $model->consulta = "
+                        Problema al enviar mail! - LOGEADO ACA PARA NO PERDER EL COMENTARIO DEL CLIENTE!
+
+                    ".$content;
+                $model->save();
+            }
+        } else {
 			$this->render('create',array(
 				'model'=>$model,
 			));
@@ -124,7 +178,12 @@ class ConsultasController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Consultas');
+		$dataProvider=new CActiveDataProvider('Consultas',array ( 
+			'criteria' => array ( 
+				'order' => 'id DESC' 
+				)
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

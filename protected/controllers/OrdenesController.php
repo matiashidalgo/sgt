@@ -32,7 +32,7 @@ class OrdenesController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','admin','delete','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo'),
+				'actions'=>array('index','create','update','admin','delete','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas'),
 				'users'=>array('@'),
 			),
 			/* array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -82,10 +82,41 @@ class OrdenesController extends Controller
 			}
 		}
 
+		$Equipos_tipos=Equipos::model()->findAll(array(
+			'select'=>'t.tipo',
+			'distinct'=>true,
+		));
+		
+		$Equipos_marcas=Equipos::model()->findAll(array(
+			'select'=>'t.marca',
+			'distinct'=>true,
+		));
+		
+		$Equipos_modelos=Equipos::model()->findAll(array(
+			'select'=>'t.modelo',
+			'distinct'=>true,
+		));
+		
+		foreach($Equipos_marcas as $equipo)
+		{
+			$autocompletes['Equipos_Marcas'][] = $equipo->marca;
+		}
+		
+		foreach($Equipos_tipos as $equipo)
+		{
+			$autocompletes['Equipos_Tipos'][] = $equipo->tipo;
+		}
+		
+		foreach($Equipos_modelos as $equipo)
+		{
+			$autocompletes['Equipos_Modelos'][] = $equipo->modelo;
+		}
+		
 		$this->render('create',array(
 			'model'=>$model,
 			'model_cliente'=>$model_cliente,
 			'model_equipo'=>$model_equipo,
+			'autocompletes'=>$autocompletes,
 		));
 	}
 
@@ -147,7 +178,13 @@ class OrdenesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Ordenes');
+		$dataProvider=new CActiveDataProvider('Ordenes',array ( 
+			'criteria' => array ( 
+				'condition'=>'fecha_entrega IS NULL',
+				'order' => 'nro_orden DESC' 
+				)
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -256,6 +293,22 @@ class OrdenesController extends Controller
 		
 		$this->renderPartial('/equipos/view', array(
 			'model' => $data,
+		));
+		
+	}
+	
+	public function actionOrdenesEntregadas()
+	{
+		
+		$dataProvider=new CActiveDataProvider('Ordenes',array ( 
+			'criteria' => array ( 
+				'condition'=>'fecha_entrega IS NOT NULL',
+				'order' => 'nro_orden DESC' 
+				)
+			)
+		);
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
 		));
 		
 	}

@@ -237,7 +237,14 @@ body{
 
 #logo
 {
-	text-align:center;
+    background: url("../images/taller/LogoTallerResized.png") no-repeat scroll 50% 50%;
+    height: 206px;
+}
+
+.ads
+{
+    text-align:center;
+    font-size: 200%;
 }
 
 #header{
@@ -248,7 +255,7 @@ body{
 #page {
 	border-radius: 10px 10px 10px 10px;
 	border: 1px solid #6ca724;
-	background-color:#F1F1F1;
+	background: url("../images/fondo-contenido.png") repeat scroll 50% 50% #F1F1F1;
 }
 
 
@@ -300,7 +307,7 @@ body{
 }
 
 #mainmenu ul {
-	background: url("../images/ui-bg_loop_85_9fda58_21x21.png") repeat scroll 50% 50% #9FDA58;
+	background: url("../images/fondo-menu.png") repeat scroll 50% 50% #9FDA58;
     border: 2px solid #9FDA58;
 	padding:12px 20px 5px 20px; 
 	border-radius:6px;
@@ -313,6 +320,7 @@ body{
 }
 
 .enterprise {
+    display: none;
 	text-align:center;
 	font-size: 270%;
 }
@@ -388,4 +396,16 @@ body{
 .operations li a:hover
 {
 	background: #9FDA58;
+}
+
+.status-success {
+    background: url("../images/ui-bg_loop_85_9fda58_21x21.png") repeat scroll 50% 50% #9FDA68;
+    border-radius: 5px;
+    border-top: 2px solid #9FDA58;
+    margin: 0;
+    padding: 5px 48px;
+}
+
+form#contact {
+    padding: 20px 157px;
 }

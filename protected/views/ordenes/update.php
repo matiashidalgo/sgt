@@ -12,6 +12,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'ordenes'), 'url'=>array('index')),
+	array('label'=>Yii::t('general', 'listOrdenesEntregadas'), 'url'=>array('ordenesEntregadas')),
 	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'orden'), 'url'=>array('create')),
 	array('label'=>Yii::t('general', 'details').' '.Yii::t('general', 'orden'), 'url'=>array('view', 'id'=>$model->nro_orden)),
 	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'ordenes'), 'url'=>array('admin')),
@@ -23,4 +24,5 @@ $this->menu=array(
 <?php echo $this->renderPartial('_form', array(
 			'model'=>$model,
 			'model_cliente'=>$model_cliente,
-			'model_equipo'=>$model_equipo,)); ?>
+			'model_equipo'=>$model_equipo,
+			'autocompletes'=>$autocompletes,)); ?>

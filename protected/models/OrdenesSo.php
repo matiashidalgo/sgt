@@ -47,6 +47,7 @@ class OrdenesSo extends CActiveRecord
 			array('nro_orden, id_serviceo', 'numerical', 'integerOnly'=>true),
 			array('nro_orden_so', 'length', 'max'=>50),
 			array('estado', 'length', 'max'=>30),
+			array('fecha_ingreso', 'default' ,'setOnEmpty'=>true, 'value' => null),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nro_orden, id_serviceo, nro_orden_so, fecha_ingreso, estado', 'safe', 'on'=>'search'),

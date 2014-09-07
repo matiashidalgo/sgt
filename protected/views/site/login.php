@@ -7,11 +7,19 @@ $this->pageTitle=Yii::app()->name . ' - ' . Yii::t('general', 'login');
 $this->breadcrumbs=array(
 	Yii::t('general', 'login'),
 );
+
+Yii::app()->clientScript->registerMetaTag('service, oficial, tecnico, taller,consulta, orden de reparacion, orden, reparacion, pedido, saber, necesito, busco, 
+										interesa, consultar, estado, seguimiento, consultas, ordenes, reparaciones, arreglo, arreglar, presupuesto, prometido, 
+										presupuestacion, utilidad, herramienta, técnico, electronica, electro, servicio, arreglar, tv, lcd, led, tcr, viejo,
+										monitores, monitor, tvs, plasma, samsung, philips, sanyo, noblex, philco, jvc, dvd, reproductor, grabador, grabadora,
+										video, casetera, casette, service oficial, service tecnico, técnico', 
+										'keywords');
+										
 ?>
 
 <h1><?php echo  CHtml::encode(Yii::t('general', 'login')) ?></h1>
 
-<p>Por favor complete con su usuario y contraseña para ingresar al sistema:</p>
+<h2>Por favor complete con su usuario y contraseña para ingresar al sistema:</h2>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(

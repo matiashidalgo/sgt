@@ -18,8 +18,8 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 		<div class="cabecera">
 			<div class="taller">
 				<div class="nombre-taller"><?php echo CHtml::encode(Yii::t('general', 'enterprise'));?></div>
-				<div class="direccion">4 de Abril 107</div>
-				<div class="tel-ubicacion">Tel. (0249)4428835 / 4521111 <br/> 7000 Tandil - Bs. As.</div>
+				<div class="direccion"><?php echo Yii::app()->params['address'] ?></div>
+				<div class="tel-ubicacion">Tel. <?php echo Yii::app()->params['phone'] ?> <br/> 7000 Tandil - Bs. As.</div>
 			</div>
 			<div class="documento">
 				<div class="clase"> x </div>
@@ -51,7 +51,11 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 		</div>
 		<div class="detalle">
 			<div class="falla">Defecto: <?php echo CHtml::encode($model_orden->falla);?></div>
-			<div class="reparacion">Reparacion: <?php echo CHtml::encode($model_orden->reparacion);?></div>
+			<div class="reparacion">Reparacion: <?php echo CHtml::encode($model_orden->reparacion); 
+														if($model_orden->precio != "$") { 
+															echo ". Costo:" . CHtml::encode($model_orden->precio);
+														}
+														?></div>
 			<div class="titulo">Defectos y reparaciones:</div>
 		</div>
 		<div class="fechas">
@@ -81,3 +85,71 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 		  'cssFile' => 'consultarOrden.css',
 	  ));
 ?>
+
+<div class="form-consulta">
+    <form id = "contact">
+        <?php if(strtotime('2014-10-01 00:00:00.0') > time()){?>
+        <div class="status-success">
+            Recientemente corregimos un error en el envio de comentarios, <br/>
+            lamentamos las molestias y falta de respuesta ante sus consultas!<br/>
+            Ya puede utilizar nuestro servicio de comentarios y consultas directas.<br/>
+            <br/>
+            Atte.<br/>
+            LeoTV
+        </div>
+        <?php } ?>
+        <div style="display: none;" id = "about">
+
+            <input title="Tu Nombre" type="text" name="Comentario[name]" class="input" value='<?php echo CHtml::encode($model_orden->idCliente->apellido) . " " . CHtml::encode($model_orden->idCliente->nombre);?>'/>
+
+            <input title="Tus Telefonos" type="text" name="Comentario[phone]" class="input" value='Telefono: <?php echo CHtml::encode($model_orden->idCliente->telefono) . " Celular: " . CHtml::encode($model_orden->idCliente->celular);?>'/>
+
+            <input title="Tu Orden" type="text" name="Comentario[order_id]" class="input" value="<?php echo $model_orden->nro_orden ?>"/>
+
+            <input title="Tu E-Mail" type="text" name="Comentario[email]" class="input" value="<?php echo $model_orden->idCliente->email ?>"/>
+
+            <input title="validator" type="text" name="Comentario[consulta_orden]" class="input" value="1" style="display: none"/>
+
+        </div>
+
+        <div id = "mess">
+
+            <textarea title="Tu comentario" name="Comentario[comentario]" cols="82" rows="6" class="textarea" onclick="if(this.value == 'Si usted tiene alguna duda o consulta, haganoslo saber aquí mismo, a la brevedad nos contactemos con usted. Gracias.'){this.value=''};"  onfocus="this.style='color: black';">Si usted tiene alguna duda o consulta, haganoslo saber aquí mismo, a la brevedad nos contactemos con usted. Gracias.</textarea>
+
+        </div>
+
+        <div id = "send">
+
+            <input title="Enviar comentario" type="submit" name="submit" value="Enviar comentario" class="button">
+
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+    var contactform 	= $('#contact'),
+        success		= 'Muchas gracias! Tu mensaje fue enviado, a la brevedad me comunicare con usted.';
+
+    contactform.submit(function(){
+        $.ajax({
+            type: "POST",
+            url: "/index.php/consultas/create",
+            data: $(this).serialize(),
+            success: function(msg)
+            {
+                if(msg == 'SEND'){
+                    response = '<div class="status-success">'+ success +'</div>';
+                }
+                else{
+                    response = '<div class="status-error">'+ msg +'</div>';
+                }
+                // Hide any previous response text
+                $(".status-error,.status-success").remove();
+                // Show response message
+                contactform.prepend(response);
+            }
+        });
+        return false;
+    });
+</script>

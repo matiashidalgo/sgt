@@ -3,6 +3,11 @@
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
+$mysql_host = "localhost";
+$mysql_database = "sgt";
+$mysql_user = "root";
+$mysql_password = "";
+
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
@@ -20,14 +25,14 @@ return array(
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		
+
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'36608291',
+			'password'=>'1234',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		
+
 	),
 
 	// application components
@@ -53,10 +58,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=sgt',
+			'connectionString' => 'mysql:host='.$mysql_host.';dbname='.$mysql_database,
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => $mysql_user,
+			'password' => $mysql_password,
 			'charset' => 'utf8',
 		),
 		
@@ -110,7 +115,10 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'admin@mail.com',
+        'adminEmailAlternative'=>'alternative@mail.com',
+        'address' => 'Street 123',
+        'phone' => '(0123)4444444 / 4444444'
 	),
 	'language' => 'es',
 );

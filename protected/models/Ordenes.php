@@ -19,6 +19,7 @@
  * @property string $fecha_prometido
  * @property string $fecha_entrega
  * @property string $estado
+ * @property string $precio
  *
  * The followings are the available model relations:
  * @property ImgOrdenes[] $imgOrdenes
@@ -58,10 +59,12 @@ class Ordenes extends CActiveRecord
 			array('nro_orden, id_cliente, id_equipo', 'numerical', 'integerOnly'=>true),
 			array('nro_serie, adquirido_en, nro_factura, estado', 'length', 'max'=>50),
 			array('falla', 'length', 'max'=>255),
+			array('precio', 'length', 'max'=>20),
 			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, reparacion', 'safe'),
+			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega', 'default' ,'setOnEmpty'=>true, 'value' => null),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('nro_orden, id_cliente, id_equipo, nro_serie, adquirido_en, nro_factura, fecha_compra, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado', 'safe', 'on'=>'search'),
+			array('nro_orden, id_cliente, id_equipo, nro_serie, adquirido_en, nro_factura, fecha_compra, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado, precio', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -101,6 +104,7 @@ class Ordenes extends CActiveRecord
 			'fecha_prometido' => Yii::t('general', 'fecha_prometido'),
 			'fecha_entrega' => Yii::t('general', 'fecha_entrega'),
 			'estado' => Yii::t('general', 'estado'),
+			'precio' => Yii::t('general', 'precio'),
 		);
 	}
 
@@ -130,6 +134,7 @@ class Ordenes extends CActiveRecord
 		$criteria->compare('fecha_prometido',$this->fecha_prometido,true);
 		$criteria->compare('fecha_entrega',$this->fecha_entrega,true);
 		$criteria->compare('estado',$this->estado,true);
+		$criteria->compare('precio',$this->precio,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

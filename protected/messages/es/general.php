@@ -69,6 +69,7 @@ return array(
 	'service_oficial' => "Service Oficial",
 	'repuesto' => "Repuesto",
 	'consulta' => "Consulta",
+    'estadisticas' => "Estadisticas",
 	'noticia' => "Noticia",
 	
 	/*** Etiquetas de los campos de cada Tabla ***/
@@ -113,10 +114,12 @@ return array(
 	'fecha_prometido' => 'Fecha de Prometido',
 	'fecha_entrega' => 'Fecha de Entrega',
 	'estado' => 'Estado',
+	'precio' => 'Precio',
 	'select_cliente' => 'Seleccione un cliente',
 	'has_service_oficial' => '¿Pertenece a un Service Oficial?',
 	'consultaDeOrden' => 'Consulta de Orden de Reparación',
 	'consultar' => 'Consultar Orden',
+	'listOrdenesEntregadas' => 'Listar ordenes entregadas',
 	
 	/** OrdenesSo **/
 	'id_serviceo' => 'Service Oficial',
@@ -130,4 +133,15 @@ return array(
 	/** ServiceOficial **/
 	'sitio_web' => 'Sitio Web',
 	'tipodeorden' => 'Tipo de orden',
+
+    /** Statistics **/
+    'Statistics' => 'Estadisticas',
+    'Date To' => 'Fecha desde',
+    'Date From' => 'Fecha hasta',
+    'Statistic' => 'Resultado',
+    'date_to' => 'Fecha desde',
+    'date_from' => 'Fecha hasta',
+    'statistic' => 'Resultado',
+    'must be saved' => 'Guardar estadistica',
+    'generate statistic' => 'Generar estadistica'
 );

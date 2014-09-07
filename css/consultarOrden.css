@@ -180,12 +180,16 @@
 	padding-bottom: 5px;
 }
 
+.ordenDeReparacion .detalle div.reparacion {
+    height:75px;
+}
+
 .ordenDeReparacion .detalle div.titulo {
     background-color: white;
     padding-left: 5px;
     position: relative;
-    top: -71px;
-    width: 250px;
+    top: -126px;
+    width: 255px;
 }
 
 .ordenDeReparacion .fechas {

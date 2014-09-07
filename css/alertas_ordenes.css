@@ -1,0 +1,25 @@
+.ordenes {
+	border: 2px dashed #9fda58;
+	background-color:#98C7BB;
+    border-radius: 10px 10px 10px 10px;
+    float: left;
+    margin: 10px 30px;
+	width: 93%;
+}
+
+.ordenes .titulo-ordenes {
+	background: url("../images/fondo-titulo-noticias.png") repeat scroll 50% 50% #9FDA58;
+    font-size: 16pt;
+    font-weight: bold;
+    padding: 5px 5px 1px;
+}
+
+.ordenes .orden {
+	background: url("../images/fondo-noticias.png") repeat scroll 50% 50% #9FDA58;
+	border-top: 2px dotted #98C7BB;
+    float: left;
+    padding: 5px 0;
+	color: #292929;
+	font-weight: bold;
+	width:100%;
+}

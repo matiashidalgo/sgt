@@ -1,0 +1,15 @@
+#SOs
+Thumbs.db
+*~
+._*
+.DS_Store
+
+#IDEs
+nbproject
+.idea
+
+#/images/
+#/.htaccess
+#/protected/config/main.php
+/yii
+/assets

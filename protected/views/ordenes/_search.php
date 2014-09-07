@@ -85,6 +85,11 @@
 		<?php echo $form->label($model,'estado'); ?>
 		<?php echo $form->textField($model,'estado',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->label($model,'precio'); ?>
+		<?php echo $form->textField($model,'precio',array('size'=>20,'maxlength'=>20)); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton(Yii::t('general', 'search')); ?>
