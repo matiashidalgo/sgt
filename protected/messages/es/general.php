@@ -136,8 +136,8 @@ return array(
 
     /** Statistics **/
     'Statistics' => 'Estadisticas',
-    'Date To' => 'Fecha desde',
-    'Date From' => 'Fecha hasta',
+    'Date To' => 'Fecha hasta',
+    'Date From' => 'Fecha desde',
     'Statistic' => 'Resultado',
     'date_to' => 'Fecha hasta',
     'date_from' => 'Fecha desde',
