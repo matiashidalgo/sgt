@@ -165,15 +165,15 @@ class SiteController extends Controller
 		$model_orden->unsetAttributes();
 		//$model_cliente->unsetAttributes();
 		
-		if(isset($_GET['Ordenes']))
+		if(isset($_POST['Ordenes']))
 		{
-			$model_orden = Ordenes::model()->findByPk($_GET['Ordenes']['nro_orden']);
+			$model_orden = Ordenes::model()->findByPk($_POST['Ordenes']['nro_orden']);
 			if($model_orden===null) 
 			{
 				$this->render('/site/error', array(	'code'=>'', 'message' => Yii::t('general', 'error_nro_orden_invalid')));
 			} else {
 				//$model_cliente = Clientes::model()->findByPk($model_orden->id_cliente);
-				if($model_orden->idCliente->password === $_GET['Clientes']['password'])
+				if($model_orden->idCliente->password === $_POST['Clientes']['password'])
 				{
 
 					$this->render('/site/consultarOrden', array('model_orden'=>$model_orden));

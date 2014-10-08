@@ -22,7 +22,7 @@ Yii::app()->clientScript->registerMetaTag('service, oficial, tecnico, taller,con
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
+	'method'=>'POST',
 )); ?>
 <div class="campos">
 	<div class="row">

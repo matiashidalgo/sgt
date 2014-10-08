@@ -68,36 +68,9 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 		</div>
 	</div>
 </div>
-<?php
-     $this->widget('ext.mPrint.mPrint', array(
-          'title' => 'Orden de Reparacion ' . $model_orden->nro_orden . ' impreso el dia ' . date('d-m-Y'),          //the title of the document. Defaults to the HTML title
-          'tooltip' => 'Imprimir orden de reparacion',        //tooltip message of the print icon. Defaults to 'print'
-          'text' => 'Imprimir',   //text which will appear beside the print icon. Defaults to NULL
-          'element' => '.ficha-orden',        //the element to be printed.
-          'exceptions' => array(       //the element/s which will be ignored
-              
-          ),
-          'publishCss' => true,       //publish the CSS for the whole page?
-          'visible' => true,  //should this be visible to the current user?
-          'alt' => '-',       //text which will appear if image can't be loaded
-          'debug' => false,            //enable the debugger to see what you will get
-          'id' => 'print-div',         //id of the print link
-		  'cssFile' => 'consultarOrden.css',
-	  ));
-?>
 
 <div class="form-consulta">
     <form id = "contact">
-        <?php if(strtotime('2014-10-01 00:00:00.0') > time()){?>
-        <div class="status-success">
-            Recientemente corregimos un error en el envio de comentarios, <br/>
-            lamentamos las molestias y falta de respuesta ante sus consultas!<br/>
-            Ya puede utilizar nuestro servicio de comentarios y consultas directas.<br/>
-            <br/>
-            Atte.<br/>
-            LeoTV
-        </div>
-        <?php } ?>
         <div style="display: none;" id = "about">
 
             <input title="Tu Nombre" type="text" name="Comentario[name]" class="input" value='<?php echo CHtml::encode($model_orden->idCliente->apellido) . " " . CHtml::encode($model_orden->idCliente->nombre);?>'/>
