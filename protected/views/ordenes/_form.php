@@ -97,10 +97,43 @@ if(!$model->getIsNewRecord()) {
     function setClienteId($this)
     {
         $('#Ordenes_id_cliente').val(parseInt($($this).val().split("-",1)));
+        muestraCliente();
     }
     function setEquipoId($this)
     {
         $('#Ordenes_id_equipo').val(parseInt($($this).val().split("-",1)));
+        muestraEquipo();
+    }
+    function muestraCliente()
+    {
+        var clienteId = $('#Ordenes_id_cliente').val();
+        if(clienteId != '' && !isNaN(clienteId))
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo CController::createUrl('Ordenes/muestraCliente'); ?>",
+            data: {
+                'Ordenes[id_cliente]'  : clienteId
+            },
+            success: function(data, textStatus, jqXHR) {
+                $(".Datos-cliente").html(data).show("slow");
+            }
+        });
+    }
+    function muestraEquipo()
+    {
+        var equipoId = $('#Ordenes_id_equipo').val();
+        if(equipoId != '' && !isNaN(equipoId)) {
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo CController::createUrl('Ordenes/muestraEquipo'); ?>",
+                data: {
+                    'Ordenes[id_equipo]'  : equipoId
+                },
+                success: function(data, textStatus, jqXHR) {
+                    $(".Datos-equipo").html(data).show("slow");
+                }
+            });
+        }
     }
 </script>
 <div class="form">
@@ -255,7 +288,10 @@ if(!$model->getIsNewRecord()) {
 									 ),
 							   'type'=>'POST',
 							   'success'=>'function(data){
-									$("#Ordenes_id_equipo").append(data);
+									$("#equipo").val(data);
+									$("#Ordenes_id_equipo").val(parseInt(data.split("-",1)));
+									muestraEquipo();
+									$(".equipo").slideToggle("slow");
 									/*
 									$(".equipo").html($(".popup").html());
 									$(".popup").dialog("close");
@@ -553,7 +589,9 @@ if(!$model->getIsNewRecord()) {
                              ),
                        'type'=>'POST',
 					   'success'=>'function(data){
-							$("#Ordenes_id_cliente").append(data);
+							$("#cliente").val(data);
+							$("#Ordenes_id_cliente").val(parseInt(data.split("-",1)));
+							muestraCliente();
 							$(".cliente").html($(".popup").html());
 							$(".popup").dialog("close");
 						}'

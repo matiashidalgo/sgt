@@ -228,7 +228,7 @@ class OrdenesController extends Controller
 			
 			$model->save();
 			
-			$retorna = "<option value=" . $model->id . " selected=selected>" .$model->AllConcat . "</option>";
+			$retorna = $model->AllConcat;
 		}
 		
 		echo $retorna;
@@ -246,30 +246,32 @@ class OrdenesController extends Controller
 						
 			$model->save();
 			
-			$retorna = "<option value=" . $model->id . " selected=selected>" .$model->AllConcat . "</option>";
+			$retorna = $model->AllConcat;
 		}
 		
 		echo $retorna;
 	}
 	
 	public function actionMuestraCliente()
-	{		
-		$data = Clientes::model()->findByPk($_POST['Ordenes']['id_cliente']);
-		
-		$this->renderPartial('/clientes/view', array(
-			'model' => $data,
-		));
+	{
+        if (Yii::app()->request->isAjaxRequest && $_POST['Ordenes'] && $_POST['Ordenes']['id_cliente']) {
+            $data = Clientes::model()->findByPk($_POST['Ordenes']['id_cliente']);
+
+            $this->renderPartial('/clientes/view', array(
+                'model' => $data,
+            ));
+        }
 	}
 	
 	public function actionMuestraEquipo()
 	{		
-		
-		$data = Equipos::model()->findByPk($_POST['Ordenes']['id_equipo']);
-		
-		$this->renderPartial('/equipos/view', array(
-			'model' => $data,
-		));
-		
+		if (Yii::app()->request->isAjaxRequest && $_POST['Ordenes'] && $_POST['Ordenes']['id_equipo']) {
+            $data = Equipos::model()->findByPk($_POST['Ordenes']['id_equipo']);
+
+            $this->renderPartial('/equipos/view', array(
+                'model' => $data,
+            ));
+        }
 	}
 	
 	public function actionOrdenesEntregadas()
@@ -335,6 +337,9 @@ class OrdenesController extends Controller
     private function _getAutocompletes()
     {
         $autocompletes = array();
+        $marcas = array();
+        $tipos = array();
+        $modelos = array();
 
         $Clientes = Clientes::model()->findAll();
 
@@ -350,9 +355,20 @@ class OrdenesController extends Controller
         foreach($Equipos as $equipo)
         {
             $autocompletes['Equipos'][] = $equipo->getAllConcat();
-            $autocompletes['Equipos_Marcas'][$equipo->marca] = $equipo->marca;
-            $autocompletes['Equipos_Tipos'][$equipo->tipo] = $equipo->tipo;
-            $autocompletes['Equipos_Modelos'][$equipo->modelo] = $equipo->modelo;
+
+            $marcas[$equipo->marca] = $equipo->marca;
+            $tipos[$equipo->tipo] = $equipo->tipo;
+            $modelos[$equipo->modelo] = $equipo->modelo;
+        }
+
+        foreach($marcas as $marca) {
+            $autocompletes['Equipos_Marcas'][] = $marca;
+        }
+        foreach($tipos as $tipo) {
+            $autocompletes['Equipos_Tipos'][] = $tipo;
+        }
+        foreach($modelos as $modelo) {
+            $autocompletes['Equipos_Modelos'][] = $modelo;
         }
 
         return $autocompletes;
