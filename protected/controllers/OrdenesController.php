@@ -27,10 +27,10 @@ class OrdenesController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			/*array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array(),
 				'users'=>array('*'),
-			),
+			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('index','create','update','admin','delete','view','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas','pdf','npdf'),
 				'users'=>array('@'),
