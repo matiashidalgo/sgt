@@ -82,41 +82,13 @@ class OrdenesController extends Controller
 			}
 		}
 
-		$Equipos_tipos=Equipos::model()->findAll(array(
-			'select'=>'t.tipo',
-			'distinct'=>true,
-		));
-		
-		$Equipos_marcas=Equipos::model()->findAll(array(
-			'select'=>'t.marca',
-			'distinct'=>true,
-		));
-		
-		$Equipos_modelos=Equipos::model()->findAll(array(
-			'select'=>'t.modelo',
-			'distinct'=>true,
-		));
-		
-		foreach($Equipos_marcas as $equipo)
-		{
-			$autocompletes['Equipos_Marcas'][] = $equipo->marca;
-		}
-		
-		foreach($Equipos_tipos as $equipo)
-		{
-			$autocompletes['Equipos_Tipos'][] = $equipo->tipo;
-		}
-		
-		foreach($Equipos_modelos as $equipo)
-		{
-			$autocompletes['Equipos_Modelos'][] = $equipo->modelo;
-		}
+        $autocompletes = $this->_getAutocompletes();
 		
 		$this->render('create',array(
 			'model'=>$model,
 			'model_cliente'=>$model_cliente,
 			'model_equipo'=>$model_equipo,
-			'autocompletes'=>$autocompletes,
+			'autocompletes'=>$autocompletes
 		));
 	}
 
@@ -152,10 +124,13 @@ class OrdenesController extends Controller
 				}
 		}
 
+        $autocompletes = $this->_getAutocompletes();
+
 		$this->render('update',array(
 			'model'=>$model,
 			'model_cliente'=>$model_cliente,
 			'model_equipo'=>$model_equipo,
+            'autocompletes'=>$autocompletes
 		));
 	}
 
@@ -355,5 +330,31 @@ class OrdenesController extends Controller
         $this->renderPartial('_pdf',array(
             'model'=>$this->loadModel($id),
         ));
+    }
+
+    private function _getAutocompletes()
+    {
+        $autocompletes = array();
+
+        $Clientes = Clientes::model()->findAll();
+
+        $Equipos = Equipos::model()->findAll();
+
+        /** @var $cliente Clientes */
+        foreach($Clientes as $cliente)
+        {
+            $autocompletes['Clientes'][] = $cliente->getAllConcat();
+        }
+
+        /** @var $equipo Equipos */
+        foreach($Equipos as $equipo)
+        {
+            $autocompletes['Equipos'][] = $equipo->getAllConcat();
+            $autocompletes['Equipos_Marcas'][$equipo->marca] = $equipo->marca;
+            $autocompletes['Equipos_Tipos'][$equipo->tipo] = $equipo->tipo;
+            $autocompletes['Equipos_Modelos'][$equipo->modelo] = $equipo->modelo;
+        }
+
+        return $autocompletes;
     }
 }

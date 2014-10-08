@@ -128,6 +128,6 @@ class Clientes extends CActiveRecord
 	
 	public function getAllConcat()
 	{
-		return $this->id . " - " . $this->nombre . " - " . $this->apellido . " - " . $this->direccion . " - " . $this->telefono . " - " . $this->celular;
+		return $this->id . "- " . $this->nombre . " - " . $this->apellido . " - " . $this->direccion . " - " . $this->telefono . " - " . $this->celular;
 	}
 }

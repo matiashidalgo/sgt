@@ -87,7 +87,16 @@ Yii::app()->clientScript->registerScript('popup', "
 	");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#cliente').on('change',function(){
+            $('#Ordenes_id_cliente').val(parseInt($(this).val().split("-",1)));
+        });
+        $('#equipo').on('change',function(){
+            $('#Ordenes_id_equipo').val(parseInt($(this).val().split("-",1)));
+        });
+    });
+</script>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -107,26 +116,20 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_cliente'); ?>
-		<?php //echo $form->textField($model,'id_cliente'); 
-			echo CHtml::dropDownList(
-				'Ordenes[id_cliente]', 
-				$model->idCliente, 
-				CHtml::listData(Clientes::model()->findAll(), 'id', 'AllConcat'),
-				array(
-					//'class' => 'opcion-selector',		
-					'prompt' => Yii::t('general', 'select_cliente'),
-					'ajax' => array(
-						'type'=>'POST', //request type
-						//'dataType'=>'json',
-						'url'=>CController::createUrl('Ordenes/muestraCliente'), //url to call.
-						'data'=>array('Ordenes[id_cliente]'=>'js:this.value'),
-						'success'=>'function(data){
-							$(".Datos-cliente").html(data).show("slow");
-						}',									
-					)
-				)
-			);
-			
+		<?php echo $form->hiddenField($model,'id_cliente');
+        $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+            'name'=>'Ordenes[cliente]',
+            //'sourceUrl'=>'sugerenciasModelo',
+            'source'=>$autocompletes['Clientes'],
+            // additional javascript options for the autocomplete plugin
+            'options'=>array(
+                'minLength'=>'2'
+            ),
+            'value' => $model->idCliente->getAllConcat(),
+            'htmlOptions' => array(
+                'id'=>'cliente'
+            ),
+        ));
 			echo CHtml::Button(Yii::t('general', 'create'),Array('class' => 'crear-cliente'));
 		?>
 		<?php echo $form->error($model,'id_cliente'); ?>
@@ -138,26 +141,21 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_equipo'); ?>
-		<?php //echo $form->textField($model,'id_equipo'); 
-			echo CHtml::dropDownList(
-				'Ordenes[id_equipo]', 
-				$model->idEquipo, 
-				CHtml::listData(Equipos::model()->findAll(), 'id', 'AllConcat'), 
-				array(
-					//'class' => 'opcion-selector',		
-					'prompt' => Yii::t('general', 'select_equipo'),
-					'ajax' => array(
-						'type'=>'POST', //request type
-						//'dataType'=>'json',
-						'url'=>CController::createUrl('Ordenes/muestraEquipo'), //url to call.
-						'data'=>array('Ordenes[id_equipo]'=>'js:this.value'),
-						'success'=>'function(data){
-							$(".Datos-equipo").html(data).show("slow");
-						}',									
-					)
-				)
-			);
-			
+		<?php echo $form->hiddenField($model,'id_equipo');
+        $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+            'name'=>'Ordenes[equipo]',
+            //'sourceUrl'=>'sugerenciasModelo',
+            'source'=>$autocompletes['Equipos'],
+            // additional javascript options for the autocomplete plugin
+            'options'=>array(
+                'minLength'=>'2'
+            ),
+            'value' => $model->idEquipo->getAllConcat(),
+            'htmlOptions' => array(
+                'id'=>'equipo',
+            ),
+        ));
+
 			echo CHtml::Button(Yii::t('general', 'create'),Array('class' => 'crear-equipo'));
 		?>
 		<?php echo $form->error($model,'id_equipo'); ?>

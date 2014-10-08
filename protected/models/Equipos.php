@@ -98,6 +98,6 @@ class Equipos extends CActiveRecord
 	
 	public function getAllConcat()
 	{
-		return $this->id . " - " . $this->tipo . " - " . $this->modelo . " - " . $this->marca;
+		return $this->id . "- " . $this->tipo . " - " . $this->modelo . " - " . $this->marca;
 	}
 }
