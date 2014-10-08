@@ -123,6 +123,9 @@ class StatisticsController extends Controller
                     } else {
                         $statistic['statistic'] += (int)$order->precio;
                     }
+                    if ($order->gastos) {
+                        $statistic['statistic'] -= (int)$order->gastos;
+                    }
                 }
                 if (!$update) {
                     $stat->attributes=$statistic;

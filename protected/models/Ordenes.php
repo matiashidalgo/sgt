@@ -20,6 +20,7 @@
  * @property string $fecha_entrega
  * @property string $estado
  * @property string $precio
+ * @property string $gastos
  *
  * The followings are the available model relations:
  * @property ImgOrdenes[] $imgOrdenes
@@ -59,7 +60,7 @@ class Ordenes extends CActiveRecord
 			array('nro_orden, id_cliente, id_equipo', 'numerical', 'integerOnly'=>true),
 			array('nro_serie, adquirido_en, nro_factura, estado', 'length', 'max'=>50),
 			array('falla', 'length', 'max'=>255),
-			array('precio', 'length', 'max'=>20),
+			array('precio, gastos', 'length', 'max'=>20),
 			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, reparacion', 'safe'),
 			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega', 'default' ,'setOnEmpty'=>true, 'value' => null),
 			// The following rule is used by search().
@@ -105,6 +106,7 @@ class Ordenes extends CActiveRecord
 			'fecha_entrega' => Yii::t('general', 'fecha_entrega'),
 			'estado' => Yii::t('general', 'estado'),
 			'precio' => Yii::t('general', 'precio'),
+			'gastos' => Yii::t('general', 'gastos'),
 		);
 	}
 
@@ -135,6 +137,7 @@ class Ordenes extends CActiveRecord
 		$criteria->compare('fecha_entrega',$this->fecha_entrega,true);
 		$criteria->compare('estado',$this->estado,true);
 		$criteria->compare('precio',$this->precio,true);
+		$criteria->compare('gastos',$this->gastos,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

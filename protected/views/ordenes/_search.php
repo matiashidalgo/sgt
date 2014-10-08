@@ -91,6 +91,11 @@
 		<?php echo $form->textField($model,'precio',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->label($model,'gastos'); ?>
+        <?php echo $form->textField($model,'gastos',array('size'=>20,'maxlength'=>20)); ?>
+    </div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton(Yii::t('general', 'search')); ?>
 	</div>

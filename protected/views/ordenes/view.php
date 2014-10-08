@@ -41,6 +41,7 @@ $this->menu=array(
 		'fecha_entrega',
 		'estado',
 		'precio',
+        'gastos'
 	),
 )); ?>
 

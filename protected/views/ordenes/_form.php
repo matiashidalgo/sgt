@@ -452,7 +452,13 @@ if(!$model->getIsNewRecord()) {
 		<?php echo $form->textField($model,'precio',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'precio'); ?>
 	</div>
-	
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'gastos'); ?>
+        <?php echo $form->textField($model,'gastos',array('size'=>20,'maxlength'=>20)); ?>
+        <?php echo $form->error($model,'gastos'); ?>
+    </div>
+
 	<div class="row">
 		<?php echo Yii::t('general', 'has_service_oficial'); ?>
 		<?php echo CHtml::checkBox('service_oficial',0,array('size'=>50,'maxlength'=>50,'checked'=>'uncheched')); ?>

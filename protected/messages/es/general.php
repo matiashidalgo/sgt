@@ -115,6 +115,7 @@ return array(
 	'fecha_entrega' => 'Fecha de Entrega',
 	'estado' => 'Estado',
 	'precio' => 'Precio',
+    'gastos' => 'Gastos',
 	'select_cliente' => 'Seleccione un cliente',
 	'has_service_oficial' => '¿Pertenece a un Service Oficial?',
 	'consultaDeOrden' => 'Consulta de Orden de Reparación',
