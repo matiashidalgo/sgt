@@ -94,14 +94,14 @@ if(!$model->getIsNewRecord()) {
 }
 ?>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#cliente').on('change',function(){
-            $('#Ordenes_id_cliente').val(parseInt($(this).val().split("-",1)));
-        });
-        $('#equipo').on('change',function(){
-            $('#Ordenes_id_equipo').val(parseInt($(this).val().split("-",1)));
-        });
-    });
+    function setClienteId($this)
+    {
+        $('#Ordenes_id_cliente').val(parseInt($($this).val().split("-",1)));
+    }
+    function setEquipoId($this)
+    {
+        $('#Ordenes_id_equipo').val(parseInt($($this).val().split("-",1)));
+    }
 </script>
 <div class="form">
 
@@ -133,7 +133,8 @@ if(!$model->getIsNewRecord()) {
             ),
             'value' => $valCliente,
             'htmlOptions' => array(
-                'id'=>'cliente'
+                'id'=>'cliente',
+                'onblur' => 'setClienteId(this)'
             ),
         ));
 			echo CHtml::Button(Yii::t('general', 'create'),Array('class' => 'crear-cliente'));
@@ -159,6 +160,7 @@ if(!$model->getIsNewRecord()) {
             'value' => $valEquipo,
             'htmlOptions' => array(
                 'id'=>'equipo',
+                'onblur' => 'setEquipoId(this)'
             ),
         ));
 
