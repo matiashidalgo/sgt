@@ -28,11 +28,11 @@ class OrdenesController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('view'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','admin','delete','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas'),
+				'actions'=>array('index','create','update','admin','delete','view','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas','pdf','npdf'),
 				'users'=>array('@'),
 			),
 			/* array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -312,4 +312,48 @@ class OrdenesController extends Controller
 		));
 		
 	}
+
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionPdf($id)
+    {
+        // mPDF
+        //$mPDF1 = Yii::app()->ePdf->mpdf();
+        $model = $this->loadModel($id);
+        // You can easily override default constructor's params
+        /** @var $mPDF1 mPDF */
+        $mPDF1 = Yii::app()->ePdf->mpdf('', 'C5',0,'',10,10,10,10,0,0);
+        // render
+        $mPDF1->SetAutoPageBreak(false);
+        $mPDF1->SetTitle('Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ');
+        $mPDF1->SetSubject('Leonardo Hidalgo');
+        $mPDF1->SetAuthor('LeoTV');
+        $mPDF1->SetCreator('SGT');
+
+        $mPDF1->WriteHTML(
+            $this->renderPartial('_pdf',array(
+                'model'=> $model,
+            ),true)
+        );
+
+        // Load a stylesheet
+        $stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.css') . '/pdf.css');
+        $mPDF1->WriteHTML($stylesheet, 1);
+
+        # Outputs ready PDF
+        $mPDF1->Output();
+    }
+
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionNpdf($id)
+    {
+        $this->renderPartial('_pdf',array(
+            'model'=>$this->loadModel($id),
+        ));
+    }
 }

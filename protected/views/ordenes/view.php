@@ -20,7 +20,7 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo (Yii::t('general', 'details').' de la '.Yii::t('general', 'orden') . ' #' . $model->nro_orden); ?></h1>
+<h1><?php echo (Yii::t('general', 'details').' de la '.Yii::t('general', 'orden') . ' #' . $model->nro_orden); ?> <a target="_blank" href="pdf?id=<?php echo $model->nro_orden ?>">[PDF]</a></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -104,107 +104,3 @@ $this->menu=array(
 		</div>
 	</div>
 </div>
-<?php
-     /*$this->widget('ext.mPrint.mPrint', array(
-          'title' => 'Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ',          //the title of the document. Defaults to the HTML title
-          'tooltip' => 'Imprimir orden de reparacion',        //tooltip message of the print icon. Defaults to 'print'
-          'text' => 'Imprimir',   //text which will appear beside the print icon. Defaults to NULL
-          'element' => '.ficha-orden',        //the element to be printed.
-          'exceptions' => array(       //the element/s which will be ignored
-              
-          ),
-          'publishCss' => true,       //publish the CSS for the whole page?
-          'visible' => true,  //should this be visible to the current user?
-          'alt' => '-',       //text which will appear if image can't be loaded
-          'debug' => false,            //enable the debugger to see what you will get
-          'id' => 'print-div',         //id of the print link
-		  'cssFile' => 'consultarOrdenAdmin.css',
-	  ));*/
-?>
-<div class="A5">
-<div class="ficha-nueva">
-	<div class="margen">
-
-		<div class="mitad-izquierda">
-			
-			<div class="cabecera">
-				<div class="nro-de-orden">
-					
-				</div>
-				
-				<div class="direccion">
-					Av. España 252 CP.7000 Tandil - Bs. As.
-				</div>
-				<div class="telefonos">
-					(0249)4425154 / 4521111
-				</div>
-			</div>
-			
-			<div class="datos">
-				<div class="contrasenia item">
-					<?php echo CHtml::encode($model->idCliente->password);?>
-				</div>
-				<div class="fecha-ingreso item">
-					<?php echo CHtml::encode(Yii::app()->locale->dateFormatter->formatDateTime(
-									$model->fecha_ingreso,'medium',null));?>
-				</div>
-				<div class="tipo item">
-					<?php echo CHtml::encode($model->idEquipo->tipo);?>
-				</div>
-				<div class="marca item">
-					<?php echo CHtml::encode($model->idEquipo->marca);?>
-				</div>
-				<div class="modelo item">
-					<?php echo CHtml::encode($model->idEquipo->modelo);?>
-				</div>
-				<div class="nro-serie item">
-					<?php echo CHtml::encode($model->nro_serie);?>
-				</div>
-			</div>
-		</div>
-		
-		<div class="mitad-derecha">
-			
-			<div class="primer-nro-de-orden">
-				
-			</div>
-			
-			<div class="segundo-nro-de-orden">
-				
-			</div>
-			
-			<div class="cliente">
-				<?php echo CHtml::encode($model->idCliente->apellido) . " " . CHtml::encode($model->idCliente->nombre);?>
-			</div>
-			
-			<div class="telefono">
-				<?php echo CHtml::encode($model->idCliente->telefono) . " / " . CHtml::encode($model->idCliente->celular);?>
-			</div>
-			
-			<div class="precio">
-				<?php echo substr($model->precio, 1);;?>
-			</div>
-		
-		</div>
-		
-	</div>
-</div>
-</div>
-
-<?php
-     $this->widget('ext.mPrint.mPrint', array(
-          'title' => 'Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ',          //the title of the document. Defaults to the HTML title
-          'tooltip' => 'Imprimir orden de reparacion',        //tooltip message of the print icon. Defaults to 'print'
-          'text' => 'Imprimir A5',   //text which will appear beside the print icon. Defaults to NULL
-          'element' => '.A5',        //the element to be printed.
-          'exceptions' => array(       //the element/s which will be ignored
-              
-          ),
-          'publishCss' => true,       //publish the CSS for the whole page?
-          'visible' => true,  //should this be visible to the current user?
-          'alt' => '-',       //text which will appear if image can't be loaded
-          'debug' => false,            //enable the debugger to see what you will get
-          'id' => 'print-div',         //id of the print link
-		  'cssFile' => 'consultarOrdenAdmin.css',
-	  ));
-?>

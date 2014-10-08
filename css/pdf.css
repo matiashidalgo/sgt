@@ -1,0 +1,110 @@
+.pdf {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.45em;
+    width: 459pt;
+    height: 649pt;
+}
+
+.pdf .clientCopy {
+    padding-left: 220px;
+    padding-right: 50px;
+    height: 139mm;
+}
+
+.pdf .clientCopy .header {
+    height: 28.5mm;
+}
+
+.pdf .clientCopy .password {
+
+}
+
+.pdf .clientCopy .dateIngreso {
+
+}
+
+.pdf .clientCopy .equipo {
+
+}
+
+.pdf .clientCopy .marca {
+
+}
+
+.pdf .clientCopy .modelo {
+
+}
+
+.pdf .clientCopy .nroSerie {
+
+}
+
+.pdf .clientCopy .falla {
+
+}
+
+.pdf .clientCopy .footer {
+
+}
+
+.pdf .ticket {
+    padding-left: 80px;
+    padding-right: 50px;
+}
+
+.pdf .ticket .leftSide {
+    width: 50%;
+    float:left;
+    padding-top: 8mm;
+    line-height: 1.2em;
+}
+
+.pdf .ticket .leftSide .lastname {
+
+}
+
+.pdf .ticket .leftSide .firstname {
+
+}
+
+.pdf .ticket .leftSide .equipo {
+
+}
+
+.pdf .ticket .leftSide .marca {
+
+}
+
+.pdf .ticket .leftSide .modelo {
+
+}
+
+.pdf .ticket .leftSide .nroSerie {
+
+}
+
+.pdf .ticket .leftSide .falla {
+
+}
+
+.pdf .ticket .rightSide {
+    width: 49%;
+    float:right;
+}
+
+.pdf .ticket .rightSide .dateIngreso {
+
+}
+
+.pdf .ticket .rightSide .address {
+
+}
+
+.pdf .ticket .rightSide .tel {
+
+}
+
+.pdf .ticket .rightSide .cel {
+
+}
