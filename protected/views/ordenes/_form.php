@@ -86,6 +86,12 @@ Yii::app()->clientScript->registerScript('popup', "
 	});
 	");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
+$valEquipo = '';
+$valCliente = '';
+if(!$model->getIsNewRecord()) {
+    $valCliente = $model->idCliente->getAllConcat();
+    $valEquipo = $model->idEquipo->getAllConcat();
+}
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -125,7 +131,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             'options'=>array(
                 'minLength'=>'2'
             ),
-            'value' => $model->idCliente->getAllConcat(),
+            'value' => $valCliente,
             'htmlOptions' => array(
                 'id'=>'cliente'
             ),
@@ -150,7 +156,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             'options'=>array(
                 'minLength'=>'2'
             ),
-            'value' => $model->idEquipo->getAllConcat(),
+            'value' => $valEquipo,
             'htmlOptions' => array(
                 'id'=>'equipo',
             ),
