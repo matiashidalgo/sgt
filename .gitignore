@@ -13,3 +13,4 @@ nbproject
 #/protected/config/main.php
 /yii
 /assets
+/protected/runtime
