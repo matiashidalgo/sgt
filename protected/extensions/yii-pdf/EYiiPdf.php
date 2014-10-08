@@ -101,7 +101,8 @@ class EYiiPdf extends CApplicationComponent
      */
     public function mpdf()
     {
-        $this->initLibrary(__FUNCTION__, func_get_args());
+        $func_args=func_get_args();
+        $this->initLibrary(__FUNCTION__, $func_args);
         return $this->_mpdf;
     }
 
