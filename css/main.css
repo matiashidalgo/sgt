@@ -409,3 +409,38 @@ body{
 form#contact {
     padding: 20px 157px;
 }
+
+/* FONDO LIGHTBOX */
+
+.black_overlay {
+    background-color: black;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 90;
+    display: none;
+}
+
+.popup-loading {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    height: 75px;
+    padding: 30px 10px 15px;
+    left: 45%;
+    width: 220px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    font-size: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px;
+}
+.popup-loading > img {
+    vertical-align: middle;
+    padding-bottom: 14px;
+}
