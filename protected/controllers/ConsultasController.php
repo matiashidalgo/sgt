@@ -91,7 +91,7 @@ class ConsultasController extends Controller
             }
             $email = $_POST['Comentario']['email'];
             if (!$email) {
-                $email = "no-mail@serviceleotv.site88.net";
+                $email = "mhidalgo@summasolutions.net";
             }
             $phone = $_POST['Comentario']['phone'];
             $comment = $_POST['Comentario']['comentario'];
@@ -111,7 +111,7 @@ class ConsultasController extends Controller
                 Los datos del cliente obtenidos del SGT son:\n
                 Nombre completo: ".$userName."\n
                 ".$phone."\n
-                Email: ".$email." (si el correo es no-mail@serviceleotv.site88.net es porque el usuario no tenia ningun email cargado)\n
+                Email: ".$email." (si el correo es mhidalgo@summasolutions.net es porque el usuario no tenia ningun email cargado)\n
                 ".$phone."\n
 
                 Este Informe fue confeccionado por el SGT

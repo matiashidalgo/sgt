@@ -305,8 +305,8 @@ class OrdenesController extends Controller
         // render
         $mPDF1->SetAutoPageBreak(false);
         $mPDF1->SetTitle('Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ');
-        $mPDF1->SetSubject('Leonardo Hidalgo');
-        $mPDF1->SetAuthor('LeoTV');
+        $mPDF1->SetSubject('Orden');
+        $mPDF1->SetAuthor(Yii::app()->params['pageTitle']);
         $mPDF1->SetCreator('SGT');
 
         $mPDF1->WriteHTML(

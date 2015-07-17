@@ -9,4 +9,6 @@ return array(
     'phone' => '(0123)4444444 / 4444444',
     'enableGoogleAnalytics'=>false,
     'googleAnalyticsID'=>'XX-XXXXXXXX-X',
+    'googleAnalyticsDomain'=>'.mydomain.com',
+    'weburl' => 'www.mydomain.com'
 );

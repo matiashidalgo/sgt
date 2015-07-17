@@ -31,7 +31,7 @@
 	// Google Analytics
 	if(Yii::app()->user->isGuest) {
 		$this->widget('ext.widgets.googleAnalytics.EGoogleAnalyticsWidget',
-			array('account'=>'UA-41113258-1','domainName'=>'.serviceleotv.com.ar')
+			array('account'=>Yii::app()->params['googleAnalyticsID'],'domainName'=>Yii::app()->params['googleAnalyticsDomain'])
 		);
 	}
 ?>
