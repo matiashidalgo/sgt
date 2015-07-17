@@ -6,7 +6,11 @@ $this->pageTitle=Yii::app()->name . " - " . Yii::t('general', 'consultaDeOrden')
 Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consultarOrden.css');
 
 ?>
-
+<div class="black_overlay"></div>
+<div class="popup-loading">
+    <img alt="loading" src="/images/ajax-loader-transparent.gif">
+    <div class="popup-title"></div>
+</div>
 <h1><?php echo CHtml::encode(Yii::t('general', 'consultaDeOrden'))?></h1>
 
 <p>
@@ -105,6 +109,11 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
         success		= 'Muchas gracias! Tu mensaje fue enviado, a la brevedad me comunicare con usted.';
 
     contactform.submit(function(){
+        scrollTop();
+        showLoadingPopUp('Estamos enviando su comentario, Por favor espere...');
+        // Hide contact input and button
+        $('#mess').hide();
+        $('#send').hide();
         $.ajax({
             type: "POST",
             url: "/index.php/consultas/create",
@@ -121,8 +130,41 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
                 $(".status-error,.status-success").remove();
                 // Show response message
                 contactform.prepend(response);
+                hideLoadingPopUp();
+                scrollBottom();
             }
         });
         return false;
     });
+
+
+    function showLoadingPopUp(title) {
+        $('.black_overlay').show();
+        $('.popup-loading').show();
+        $('.popup-title').html(title);
+    }
+
+    function hideLoadingPopUp() {
+        $('.black_overlay').hide();
+        $('.popup-loading').hide();
+        $('.popup-title').html("");
+    }
+
+    function scrollTop() {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 300);
+    }
+
+    function scrollBottom() {
+        var body = document.body,
+            html = document.documentElement;
+
+        var height = Math.max( body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+        $('html,body').animate({
+            scrollTop: height
+        }, 300);
+    }
 </script>

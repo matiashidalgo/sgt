@@ -92,7 +92,7 @@ $this->menu=array(
 		</div>
 		<div class="acceso">
 			<div class="texto">Usted puede obtener una copia de este documento y/o consultar el estado de su equipo accediendo al servicio de consultas de ordenes de reparación en nuestro sitio web:</div>
-			<div class="sitio">www.serviceleotv.com.ar</div>
+			<div class="sitio"><?php echo Yii::app()->params['weburl'] ?></div>
 			<div class="passport">para poder ingresar debe proporcionar el numero de la orden, en este caso "<span class="negrita"><?php echo CHtml::encode($model->nro_orden);?></span>", y su contraseña de acceso personal "<span class="negrita"><?php echo CHtml::encode($model->idCliente->password);?></span>"</div>
 		</div>
 		<div class="fechas">

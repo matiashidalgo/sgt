@@ -72,7 +72,7 @@ class ConsultasController extends Controller
 			$model->attributes=$_POST['Consultas'];
 			
 			$name='=?UTF-8?B?'.base64_encode($model->nombre).'-'.base64_encode($model->apellido).'?=';
-			$subject='=?UTF-8?B?'.base64_encode('Nueva consulta en ServiceLeoTV').'?=';
+			$subject='=?UTF-8?B?'.base64_encode('Nueva consulta en '. Yii::app()->params['pageTitle']).'?=';
 			$headers="From: $name <{$model->email}>\r\n".
 				"Reply-To: {$model->email}\r\n".
 				"MIME-Version: 1.0\r\n".
@@ -91,14 +91,14 @@ class ConsultasController extends Controller
             }
             $email = $_POST['Comentario']['email'];
             if (!$email) {
-                $email = "no-mail@serviceleotv.site88.net";
+                $email = "mhidalgo@summasolutions.net";
             }
             $phone = $_POST['Comentario']['phone'];
             $comment = $_POST['Comentario']['comentario'];
             $orderId = $_POST['Comentario']['order_id'];
 
             $name='=?UTF-8?B?'.base64_encode($userName).'?=';
-            $subject='=?UTF-8?B?'.base64_encode('Nueva consulta en la orden de reparacion '.$orderId.' en ServiceLeoTV').'?=';
+            $subject='=?UTF-8?B?'.base64_encode('Nueva consulta en la orden de reparacion '.$orderId.' en '. Yii::app()->params['pageTitle']).'?=';
             $headers="From: $name <{$email}>\r\n".
                 "Reply-To: {$email}\r\n".
                 "MIME-Version: 1.0\r\n".
@@ -108,10 +108,10 @@ class ConsultasController extends Controller
                 El cliente ".$userName." le envio el siguiente comentario en la orden de reparacion numero ".$orderId.":\n
                 ".$comment."\n
 
-                Los datos del cliente obtenidos del SGC son:\n
+                Los datos del cliente obtenidos del SGT son:\n
                 Nombre completo: ".$userName."\n
                 ".$phone."\n
-                Email: ".$email." (si el correo es no-mail@serviceleotv.site88.net es porque el usuario no tenia ningun email cargado)\n
+                Email: ".$email." (si el correo es mhidalgo@summasolutions.net es porque el usuario no tenia ningun email cargado)\n
                 ".$phone."\n
 
                 Este Informe fue confeccionado por el SGT
