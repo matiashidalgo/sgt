@@ -21,15 +21,40 @@
  * @property string $estado
  * @property string $precio
  * @property string $gastos
+ * @property integer $tecnico
+ * @property string $imei
  *
  * The followings are the available model relations:
  * @property ImgOrdenes[] $imgOrdenes
  * @property Clientes $idCliente
  * @property Equipos $idEquipo
+ * @property Clientes $idTecnico
  * @property OrdenesSo[] $ordenesSos
  */
 class Ordenes extends CActiveRecord
 {
+	public $tipoequipo;
+	public $modeloequipo;
+	public $nombrecliente;
+	public $nombretecnico;
+	
+	public function nombreapellido($posi,$nombreabuscar)
+	{
+		
+		if (strlen($nombreabuscar))
+		{
+			$arreglo = explode(' ', $nombreabuscar);
+			if (sizeof($arreglo) == 1)
+				return $arreglo[0];
+			else if (sizeof($arreglo) == 2)
+			{
+				return $arreglo[$posi];
+			}
+		}
+		else 
+			return '';
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -56,19 +81,28 @@ class Ordenes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nro_orden, id_cliente, id_equipo, falla, estado', 'required'),
-			array('nro_orden, id_cliente, id_equipo', 'numerical', 'integerOnly'=>true),
+			array('nro_orden, id_cliente, id_equipo, falla, estado,tecnico', 'required'),
+			array('nro_orden, id_cliente, id_equipo, imei', 'numerical', 'integerOnly'=>true),
 			array('nro_serie, adquirido_en, nro_factura, estado', 'length', 'max'=>50),
+			array('tecnico','usuarioexistente'),
 			array('falla', 'length', 'max'=>255),
 			array('precio, gastos', 'length', 'max'=>20),
 			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, reparacion', 'safe'),
 			array('fecha_compra, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega', 'default' ,'setOnEmpty'=>true, 'value' => null),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('nro_orden, id_cliente, id_equipo, nro_serie, adquirido_en, nro_factura, fecha_compra, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado, precio', 'safe', 'on'=>'search'),
+			array('nro_orden, id_cliente,nombrecliente,modeloequipo, id_equipo, tipoequipo, modeloequipo,nro_serie, adquirido_en, nro_factura, fecha_compra, nombretecnico, falla, reparacion, fecha_ingreso, fecha_presupuesto, fecha_reparado, fecha_prometido, fecha_entrega, estado, precio', 'safe', 'on'=>'search'),
 		);
 	}
 
+	public function usuarioexistente($attribute, $params)
+	{
+		$existe = Clientes::model()->exists('id = ' . split('-',$this->tecnico)[0] . ' and admin > 0');
+
+		if(!$existe)
+			$this->addError($attribute, 'Tecnico inexistente.');
+	}
+	
 	/**
 	 * @return array relational rules.
 	 */
@@ -81,6 +115,8 @@ class Ordenes extends CActiveRecord
 			'idCliente' => array(self::BELONGS_TO, 'Clientes', 'id_cliente'),
 			'idEquipo' => array(self::BELONGS_TO, 'Equipos', 'id_equipo'),
 			'ordenesSos' => array(self::HAS_MANY, 'OrdenesSo', 'nro_orden'),
+			'equipos' => array(self::BELONGS_TO, 'Equipos','id_equipo'),
+			'idTecnico' => array(self::BELONGS_TO, 'Clientes', 'tecnico')
 		);
 	}
 
@@ -120,10 +156,27 @@ class Ordenes extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+		
+		$criteria->together = true;
+		
+		$criteria->with = array('idCliente','equipos','idTecnico');
 
 		$criteria->compare('nro_orden',$this->nro_orden);
 		$criteria->compare('id_cliente',$this->id_cliente);
+		
+		$criteria->compare('idCliente.apellido',self::nombreapellido(0,$this->nombrecliente),true);
+		$criteria->compare('idCliente.apellido',self::nombreapellido(1,$this->nombrecliente),true,'OR');
+		$criteria->compare('idCliente.nombre',self::nombreapellido(0,$this->nombrecliente),true,'OR');
+		$criteria->compare('idCliente.nombre',self::nombreapellido(1,$this->nombrecliente),true,'OR');
+		
+		$criteria->compare('idTecnico.apellido',self::nombreapellido(0,$this->nombretecnico),true);
+		$criteria->compare('idTecnico.apellido',self::nombreapellido(1,$this->nombretecnico),true,'OR');
+		$criteria->compare('idTecnico.nombre',self::nombreapellido(0,$this->nombretecnico),true,'OR');
+		$criteria->compare('idTecnico.nombre',self::nombreapellido(1,$this->nombretecnico),true,'OR');
+		
 		$criteria->compare('id_equipo',$this->id_equipo);
+		$criteria->compare('equipos.tipo', $this->tipoequipo,true);
+		$criteria->compare('equipos.modelo', $this->modeloequipo,true);
 		$criteria->compare('nro_serie',$this->nro_serie,true);
 		$criteria->compare('adquirido_en',$this->adquirido_en,true);
 		$criteria->compare('nro_factura',$this->nro_factura,true);

@@ -32,7 +32,7 @@ class OrdenesController extends Controller
 				'users'=>array('*'),
 			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','admin','delete','view','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas','pdf','npdf'),
+				'actions'=>array('index','create','update','admin','delete','view','creaClienteRap', 'CreaEquipoRap', 'MuestraCliente', 'MuestraEquipo','ordenesEntregadas','pdf','npdf','ListarbyCliente','OrdenesPendientes'),
 				'users'=>array('@'),
 			),
 			/* array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,6 +55,22 @@ class OrdenesController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	public function actionListarbyCliente($id)
+	{
+		$dataProvider=new CActiveDataProvider('Ordenes',array (
+				'criteria' => array (
+						'condition'=>'fecha_entrega IS NULL',
+						'condition'=> 'id_cliente = '.$id,
+						'order' => 'nro_orden DESC'
+				)
+		)
+		);
+		$this->render('listarbycliente',array(
+				'dataProvider'=>$dataProvider,
+		));
+	}
+	
 
 	/**
 	 * Creates a new model.
@@ -72,6 +88,7 @@ class OrdenesController extends Controller
 		if(isset($_POST['Ordenes']))
 		{
 			$model->attributes=$_POST['Ordenes'];
+
 			if($model->save()){
 				if(isset($_POST['service_oficial']))
 				{
@@ -151,18 +168,33 @@ class OrdenesController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($id = '')
 	{
+		if ($id == '')
+		{
+			$condicion = '';
+			$nombretecnico = ' todos los tecnicos';
+		}
+		else
+		{
+			$condicion = 'tecnico = ' . $id;
+			$tecnicobyid = Clientes::model()->findByPk($id);
+			$nombretecnico = $tecnicobyid->nombre . ' ' .  $tecnicobyid->apellido;
+		}
+		
 		$dataProvider=new CActiveDataProvider('Ordenes',array ( 
 			'criteria' => array ( 
-				'condition'=>'fecha_entrega IS NULL',
+				'condition'=>$condicion,
 				'order' => 'nro_orden DESC' 
 				)
 			)
 		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'tecnico'=> ' todas las ordenes de ' . $nombretecnico,
+			'urlaccion' => 'Index',
 		));
+		
 	}
 
 	/**
@@ -213,9 +245,14 @@ class OrdenesController extends Controller
 		$model = new Clientes;
 		$retorna = "Fallo";
 		
+		/*ACA VERIFICAR SI LOS DATOS SON CORRECTOS*/
+		
 		if (Yii::app()->request->isAjaxRequest){
 			$model->cuenta = $_POST['cuenta'];
-			$model->password = $_POST['password'];
+			if ($_POST['password'] == '')
+				$model->password = sprintf("%'.04d\n",mt_rand(0,9999));
+			else
+				$model->password = $_POST['password'];
 			$model->nombre = $_POST['nombre'];
 			$model->apellido = $_POST['apellido'];
 			$model->direccion = $_POST['direccion'];
@@ -225,10 +262,8 @@ class OrdenesController extends Controller
 			$model->email = $_POST['email'];
 			$model->observaciones = $_POST['observaciones'];
 			$model->admin = 0;
-			
-			$model->save();
-			
-			$retorna = $model->AllConcat;
+			if ($model->save())		
+				$retorna = $model->AllConcat;
 		}
 		
 		echo $retorna;
@@ -274,20 +309,63 @@ class OrdenesController extends Controller
         }
 	}
 	
-	public function actionOrdenesEntregadas()
+	public function actionOrdenesEntregadas($id = '')
 	{
+		if ($id == '')
+		{
+			$condicion = 'fecha_entrega IS NOT NULL';
+			$nombretecnico = ' todos los tecnicos';
+		}
+		else
+		{
+			$condicion = 'fecha_entrega IS NOT NULL and tecnico = ' . $id;
+			$tecnicobyid = Clientes::model()->findByPk($id);
+			$nombretecnico = $tecnicobyid->nombre . ' ' .  $tecnicobyid->apellido;
+		}
 		
 		$dataProvider=new CActiveDataProvider('Ordenes',array ( 
 			'criteria' => array ( 
-				'condition'=>'fecha_entrega IS NOT NULL',
+				'condition'=>$condicion,
 				'order' => 'nro_orden DESC' 
 				)
 			)
 		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'tecnico'=> ' las ordenes entregadas de ' . $nombretecnico,
+			'urlaccion' => 'OrdenesEntregadas',
 		));
 		
+	}
+	
+public function actionOrdenesPendientes($id='')
+	{
+		if ($id == '')
+		{
+			$condicion = 'fecha_entrega IS NULL and fecha_reparado IS NULL';
+			$nombretecnico = ' todos los tecnicos';
+		}
+		else 
+		{
+			$condicion = 'fecha_entrega IS NULL and fecha_reparado IS NULL and tecnico = ' . $id;
+			$tecnicobyid = Clientes::model()->findByPk($id);
+			$nombretecnico = $tecnicobyid->nombre . ' ' .  $tecnicobyid->apellido;
+		}
+	
+		$dataProvider=new CActiveDataProvider('Ordenes',array (
+				'criteria' => array (
+						'condition'=> $condicion,
+						'order' => 'nro_orden ASC'
+				)
+		)
+		);
+		
+		$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+				'tecnico'=> ' las ordenes pendientes de ' . $nombretecnico,
+				'urlaccion' => 'OrdenesPendientes'
+		));
+	
 	}
 
     /**
@@ -301,12 +379,12 @@ class OrdenesController extends Controller
         $model = $this->loadModel($id);
         // You can easily override default constructor's params
         /** @var $mPDF1 mPDF */
-        $mPDF1 = Yii::app()->ePdf->mpdf('', 'C5',0,'',10,10,10,10,0,0);
+        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A4',0,'',10,10,10,10,0,0);
         // render
         $mPDF1->SetAutoPageBreak(false);
         $mPDF1->SetTitle('Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ');
-        $mPDF1->SetSubject('Orden');
-        $mPDF1->SetAuthor(Yii::app()->params['pageTitle']);
+        $mPDF1->SetSubject('Leonardo Hidalgo');
+        $mPDF1->SetAuthor('LeoTV');
         $mPDF1->SetCreator('SGT');
 
         $mPDF1->WriteHTML(
@@ -333,6 +411,18 @@ class OrdenesController extends Controller
             'model'=>$this->loadModel($id),
         ));
     }
+    
+    public function ultimaorden()
+    {
+    	//$ultimaorden_tmp = Ordenes::model()->findAll(array('order'=>'orderField DESC','limit'=>1));
+    	//foreach ($ultimaorden_tmp as $Ultimaorden_tmp)
+    	//{
+    	//	$nroorden = $Ultimaorden_tmp->nro_orden;
+    	//}
+    	
+    	return $nroorden;
+
+    }
 
     private function _getAutocompletes()
     {
@@ -344,6 +434,25 @@ class OrdenesController extends Controller
         $Clientes = Clientes::model()->findAll();
 
         $Equipos = Equipos::model()->findAll();
+        
+        $Tecnicos = Clientes::model()->findAll(array('condition'=>'admin <> 0'));
+        
+        $ultimaorden_tmp = Ordenes::model()->findAll(array('order'=>'nro_orden DESC','limit' => '1'));
+        
+    	foreach ($ultimaorden_tmp as $Ultimaorden_tmp)
+    	{
+    		$primero = '1';
+    		if ($primero == '1')
+    		{
+    			$autocompletes['UltOrden'][0] = $Ultimaorden_tmp->nro_orden;
+    			$primero = '0';
+    		}
+    	}
+        
+        foreach ($Tecnicos as $tecnico)
+        {
+        	$autocompletes['Tecnicos'][] = $tecnico->getAllConcat();
+        }
 
         /** @var $cliente Clientes */
         foreach($Clientes as $cliente)

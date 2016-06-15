@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'admin'); ?>
-		<?php echo $form->checkBox($model,'admin'); ?>
+		<?php echo $form->textField($model,'admin',array('size'=>2,'maxlength'=>1)); ?>
 		<?php echo $form->error($model,'admin'); ?>
 	</div>
 

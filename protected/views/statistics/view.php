@@ -21,6 +21,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'tecnico',
 		'date_from',
 		'date_to',
 		'statistic',

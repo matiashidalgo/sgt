@@ -175,13 +175,14 @@
 
 .ordenDeReparacion .detalle div {
     font-size: 12pt;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     width: 100%;
-	padding-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 .ordenDeReparacion .detalle div.reparacion {
     height:75px;
+    letter-spacing: 2px;
 }
 
 .ordenDeReparacion .detalle div.titulo {

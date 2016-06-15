@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
 	Yii::t('general', 'about'),
 );
 ?>
-<div class="subtitulo-contenido">Nuestro taller se encuentra ubicado en la <?php echo Yii::app()->params['address'] ?>, Exactamente: </div>
+<div class="subtitulo-contenido">Nuestro taller se encuentra ubicado en <?php echo Yii::app()->params['address'] ?></div>
 <div id="map_canvas" class="mapaGoogle" style="width:755px; height:400px"></div>
 
 <div class="subtitulo-contenido">Algunas Imagenes de nuestras galardonadas herramientas de trabajo: </div>

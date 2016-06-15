@@ -90,7 +90,7 @@
 			?>	
 		</div>
 		<div class="credits">
-		Copyright &copy; <?php echo date('Y'); ?> by <a href="http://www.mhidalgo.com.ar/">Matias Hidalgo.</a><br/>
+		Copyright &copy; <?php echo date('Y'); ?> by <a href="http://www.mhidalgo.xyz/">Matias Hidalgo.</a><br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 		</div>

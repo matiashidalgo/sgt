@@ -22,28 +22,49 @@ $this->menu=array(
 
 <h1><?php echo (Yii::t('general', 'details').' de la '.Yii::t('general', 'orden') . ' #' . $model->nro_orden); ?> <a target="_blank" href="pdf?id=<?php echo $model->nro_orden ?>">[PDF]</a></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php
+	if ($model->imei == '')
+		$artributos = array ('nro_orden',
+			'id_cliente',
+			'id_equipo',
+			'nro_serie',
+			'adquirido_en',
+			'nro_factura',
+			'fecha_compra',
+			'falla',
+			'reparacion',
+			'fecha_ingreso',
+			'fecha_presupuesto',
+			'fecha_reparado',
+			'fecha_prometido',
+			'fecha_entrega',
+			'estado',
+			'precio',
+	        'gastos');
+	else 
+		$artributos = array ('nro_orden',
+				'id_cliente',
+				'id_equipo',
+				'nro_serie',
+				'imei',
+				'adquirido_en',
+				'nro_factura',
+				'fecha_compra',
+				'falla',
+				'reparacion',
+				'fecha_ingreso',
+				'fecha_presupuesto',
+				'fecha_reparado',
+				'fecha_prometido',
+				'fecha_entrega',
+				'estado',
+				'precio',
+				'gastos');
+	
+	$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
-	'attributes'=>array(
-		'nro_orden',
-		'id_cliente',
-		'id_equipo',
-		'nro_serie',
-		'adquirido_en',
-		'nro_factura',
-		'fecha_compra',
-		'falla',
-		'reparacion',
-		'fecha_ingreso',
-		'fecha_presupuesto',
-		'fecha_reparado',
-		'fecha_prometido',
-		'fecha_entrega',
-		'estado',
-		'precio',
-        'gastos'
-	),
-)); ?>
+	'attributes'=> $artributos,
+	)); ?>
 
 <div class="ficha-orden">
 	<div class="ordenDeReparacion">
@@ -75,6 +96,12 @@ $this->menu=array(
 			<div class="modelo-equipo">Modelo: <?php echo CHtml::encode($model->idEquipo->modelo);?></div>
 			<div class="marca-equipo">Marca: <?php echo CHtml::encode($model->idEquipo->marca);?></div>
 			<div class="nro-serie-equipo">Número de serie: <?php echo CHtml::encode($model->nro_serie);?></div>
+			<?php if ($model->imei <> ''){?><div class="imei">IMEI: <?php echo CHtml::encode($model->imei);?></div>
+				<style>
+					.ordenDeReparacion .datos-equipo {  height: 170px;   }
+					.ordenDeReparacion { height: 840px; }
+				</style>
+			<?php }?>
 			<div class="adquirido-equipo">Adquirido en: <?php echo CHtml::encode($model->adquirido_en);?></div>
 			<div class="nro-factura-equipo">Nº de factura: <?php echo CHtml::encode($model->nro_factura);?></div>
 			<div class="fecha-compra-equipo">Fecha de compra: <?php echo CHtml::encode(Yii::app()->locale->dateFormatter->formatDateTime(
@@ -92,7 +119,7 @@ $this->menu=array(
 		</div>
 		<div class="acceso">
 			<div class="texto">Usted puede obtener una copia de este documento y/o consultar el estado de su equipo accediendo al servicio de consultas de ordenes de reparación en nuestro sitio web:</div>
-			<div class="sitio"><?php echo Yii::app()->params['weburl'] ?></div>
+			<div class="sitio">www.serviceleotv.com.ar</div>
 			<div class="passport">para poder ingresar debe proporcionar el numero de la orden, en este caso "<span class="negrita"><?php echo CHtml::encode($model->nro_orden);?></span>", y su contraseña de acceso personal "<span class="negrita"><?php echo CHtml::encode($model->idCliente->password);?></span>"</div>
 		</div>
 		<div class="fechas">

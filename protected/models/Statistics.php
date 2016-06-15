@@ -8,9 +8,34 @@
  * @property string $date_from
  * @property string $date_to
  * @property integer $statistic
+ * @property integer $tecnico
+ * 
+ * The followings are the available model relations:
+ * @property Clientes $idTecnico
  */
 class Statistics extends CActiveRecord
 {
+	
+	public $nombrecliente;
+	
+	public function nombreapellido($posi)
+	{
+	
+		if (strlen($this->nombrecliente))
+		{
+			$arreglo = explode(' ', $this->nombrecliente);
+			if (sizeof($arreglo) == 1)
+				return $arreglo[0];
+			else if (sizeof($arreglo) == 2)
+			{
+				return $arreglo[$posi];
+			}
+		}
+		else
+			return '';
+	}
+	
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -28,10 +53,10 @@ class Statistics extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date_from, date_to, statistic', 'required'),
-			array('statistic', 'numerical', 'integerOnly'=>true),
+			array('statistic,tecnico', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, date_from, date_to, statistic', 'safe', 'on'=>'search'),
+			array('id, date_from, date_to, nombrecliente, statistic', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +68,7 @@ class Statistics extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'idTecnico' => array(self::BELONGS_TO, 'Clientes', 'tecnico')
 		);
 	}
 
@@ -80,6 +106,12 @@ class Statistics extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('date_from',$this->date_from,true);
 		$criteria->compare('date_to',$this->date_to,true);
+		
+		$criteria->compare('idCliente.apellido',self::nombreapellido(0),true);
+		$criteria->compare('idCliente.apellido',self::nombreapellido(1),true,'OR');
+		$criteria->compare('idCliente.nombre',self::nombreapellido(0),true,'OR');
+		$criteria->compare('idCliente.nombre',self::nombreapellido(1),true,'OR');
+		
 		$criteria->compare('statistic',$this->statistic);
 
 		return new CActiveDataProvider($this, array(

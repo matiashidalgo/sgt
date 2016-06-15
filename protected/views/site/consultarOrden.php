@@ -47,6 +47,12 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 			<div class="modelo-equipo">Modelo: <?php echo CHtml::encode($model_orden->idEquipo->modelo);?></div>
 			<div class="marca-equipo">Marca: <?php echo CHtml::encode($model_orden->idEquipo->marca);?></div>
 			<div class="nro-serie-equipo">Número de serie: <?php echo CHtml::encode($model_orden->nro_serie);?></div>
+			<?php if ($model_orden->imei <> ''){?><div class="imei">IMEI: <?php echo CHtml::encode($model_orden->imei);?></div>
+				<style>
+					.ordenDeReparacion .datos-equipo {  height: 170px;   }
+					.ordenDeReparacion { height: 660px; }
+				</style>
+			<?php }?>
 			<div class="adquirido-equipo">Adquirido en: <?php echo CHtml::encode($model_orden->adquirido_en);?></div>
 			<div class="nro-factura-equipo">Nº de factura: <?php echo CHtml::encode($model_orden->nro_factura);?></div>
 			<div class="fecha-compra-equipo">Fecha de compra: <?php echo CHtml::encode(Yii::app()->locale->dateFormatter->formatDateTime(
@@ -60,6 +66,9 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/consu
 															echo ". Costo:" . CHtml::encode($model_orden->precio);
 														}
 														?></div>
+														<style>
+														.ordenDeReparacion .detalle div {letter-spacing: 2px;}
+														</style>
 			<div class="titulo">Defectos y reparaciones:</div>
 		</div>
 		<div class="fechas">

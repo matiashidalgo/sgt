@@ -11,9 +11,16 @@ Yii::app()->clientScript->registerScript('popup', "
 			.dialog('option', 'title', 'Formulario para crear rapidamente un Cliente')
 			.dialog('open');
 		$('.cliente').html(' ');
+		$('#Clientes_password').prop('disabled', true);
 	});
 	
 	$('.cancel-cliente').live('click',function(){
+		$('.cliente').html($('.popup').html());
+		$('.popup').dialog('close');
+	});
+		
+	
+	$('.ui-dialog-titlebar-close').live('click',function(){
 		$('.cliente').html($('.popup').html());
 		$('.popup').dialog('close');
 	});
@@ -42,6 +49,7 @@ Yii::app()->clientScript->registerScript('popup', "
 		if($(this).val() == ''){
 			$('#alternate_fecha_compra').val('');
 		}
+		alert('funciono');
 	
 	});
 	
@@ -88,12 +96,40 @@ Yii::app()->clientScript->registerScript('popup', "
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $valEquipo = '';
 $valCliente = '';
+$valTecnico = $autocompletes['Tecnicos'][0];
+$valultOrden = $autocompletes['UltOrden'][0];
+
+
 if(!$model->getIsNewRecord()) {
     $valCliente = $model->idCliente->getAllConcat();
     $valEquipo = $model->idEquipo->getAllConcat();
+    if (isset($model->idTecnico))
+    	$valTecnico = $model->idTecnico->getAllConcat();
+    else 
+    {
+    	$valTecnico = '';
+    }
+}
+else
+{
+	$model->nro_orden = $valultOrden + 1;
 }
 ?>
 <script type="text/javascript">
+
+	function setTecnicoId($this)
+	{
+        $('#Ordenes_tecnico').val(parseInt($($this).val().split("-",1)));
+        if ($('#tecnico').val() == '')
+            $('#tecnico').val('<?php echo $autocompletes['Tecnicos'][0]?>');
+	}
+
+	function borrarCampoTecnico()
+	{
+		if ($('#tecnico').val() == '<?php echo $autocompletes['Tecnicos'][0]?>')
+        	$('#tecnico').val('');
+	}
+	
     function setClienteId($this)
     {
         $('#Ordenes_id_cliente').val(parseInt($($this).val().split("-",1)));
@@ -102,12 +138,16 @@ if(!$model->getIsNewRecord()) {
     function setEquipoId($this)
     {
         $('#Ordenes_id_equipo').val(parseInt($($this).val().split("-",1)));
+
+    	
         muestraEquipo();
+		
     }
     function muestraCliente()
     {
+        /*SE EJECUTA CUANDO SALIS DE LA CAJA CLIENTE*/
         var clienteId = $('#Ordenes_id_cliente').val();
-        if(clienteId != '' && !isNaN(clienteId))
+        if(clienteId != '' && !isNaN(clienteId)) {
         $.ajax({
             type: 'POST',
             url: "<?php echo CController::createUrl('Ordenes/muestraCliente'); ?>",
@@ -118,6 +158,7 @@ if(!$model->getIsNewRecord()) {
                 $(".Datos-cliente").html(data).show("slow");
             }
         });
+        }
     }
     function muestraEquipo()
     {
@@ -143,7 +184,9 @@ if(!$model->getIsNewRecord()) {
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
+	<p class="note">
+		Los campos con <span class="required">*</span> son obligatorios.
+	</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -174,11 +217,35 @@ if(!$model->getIsNewRecord()) {
 		?>
 		<?php echo $form->error($model,'id_cliente'); ?>
 		
-		<div class="Datos-cliente" style="display:none;">
+		<div class="Datos-cliente" style="display: none;"></div>
 		
-		</div>
 	</div>
 	
+	<div class="row">
+
+		<?php echo $form->labelEx($model,'tecnico'); ?>
+		<?php echo $form->hiddenField($model,'tecnico');
+        $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+            'name'=>'Ordenes[tecnico]',
+            //'sourceUrl'=>'sugerenciasModelo',
+            'source'=>$autocompletes['Tecnicos'],
+            // additional javascript options for the autocomplete plugin
+            'options'=>array(
+                'minLength'=>'2'
+            ),
+            'value' => $valTecnico,
+            'htmlOptions' => array(
+                'id'=>'tecnico',
+            	'onblur' => 'setTecnicoId(this)',
+            	'onfocus' => 'borrarCampoTecnico()'
+            ),
+        ));
+		?>
+		
+		<?php echo $form->error($model,'tecnico'); ?>
+		
+	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_equipo'); ?>
 		<?php echo $form->hiddenField($model,'id_equipo');
@@ -202,9 +269,9 @@ if(!$model->getIsNewRecord()) {
 		<?php echo $form->error($model,'id_equipo'); ?>
 		
 		
-		<div class="equipo" style="display:none">
-	
-				<div class="row">
+		<div class="equipo" style="display: none">
+
+			<div class="row">
 					<?php echo $form->labelEx($model_equipo,'tipo'); ?>
 					<?php //echo $form->textField($model_equipo,'tipo',array('size'=>30,'maxlength'=>30)); ?>
 					<?php
@@ -228,7 +295,7 @@ if(!$model->getIsNewRecord()) {
 					<?php echo $form->error($model_equipo,'tipo'); ?>
 				</div>
 
-				<div class="row">
+			<div class="row">
 					<?php echo $form->labelEx($model_equipo,'modelo'); ?>
 					<?php //echo $form->textField($model_equipo,'modelo',array('size'=>30,'maxlength'=>30)); ?>
 					<?php
@@ -252,7 +319,7 @@ if(!$model->getIsNewRecord()) {
 					<?php echo $form->error($model_equipo,'modelo'); ?>
 				</div>
 
-				<div class="row">
+			<div class="row">
 					<?php echo $form->labelEx($model_equipo,'marca'); ?>
 					<?php //echo $form->textField($model_equipo,'marca',array('size'=>30,'maxlength'=>30)); ?>
 					<?php
@@ -303,9 +370,7 @@ if(!$model->getIsNewRecord()) {
 					echo CHtml::Button(Yii::t('general', 'cancel'),Array('class' => 'cancel-equipo'));
 				?>
 		</div>
-		<div class="Datos-equipo" style="display:none;">
-		
-		</div>
+		<div class="Datos-equipo" style="display: none;"></div>
 	</div>
 
 	<div class="row">
@@ -313,6 +378,13 @@ if(!$model->getIsNewRecord()) {
 		<?php echo $form->textField($model,'nro_serie',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'nro_serie'); ?>
 	</div>
+	
+	<div class="row" id="imeifield">
+		<?php echo $form->labelEx($model,'imei'); ?>
+		<?php echo $form->textField($model,'imei',array('size'=>30,'maxlength'=>15,)); ?>
+		<?php echo $form->error($model,'imei'); ?>
+	</div>
+	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'adquirido_en'); ?>
@@ -482,14 +554,14 @@ if(!$model->getIsNewRecord()) {
 		<?php echo $form->textField($model,'estado',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'estado'); ?>
 	</div>
-	
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'precio'); ?>
 		<?php echo $form->textField($model,'precio',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'precio'); ?>
 	</div>
 
-    <div class="row">
+	<div class="row">
         <?php echo $form->labelEx($model,'gastos'); ?>
         <?php echo $form->textField($model,'gastos',array('size'=>20,'maxlength'=>20)); ?>
         <?php echo $form->error($model,'gastos'); ?>
@@ -508,8 +580,8 @@ if(!$model->getIsNewRecord()) {
 
 <div class="popup"></div>
 
-<div class="cliente" style="display:none;">
-	
+	<div class="cliente" style="display: none;">
+
 		<div class="row">
 			<?php echo $form->labelEx($model_cliente,'cuenta'); ?>
 			<?php echo $form->textField($model_cliente,'cuenta',array('size'=>16,'maxlength'=>16)); ?>
@@ -518,8 +590,15 @@ if(!$model->getIsNewRecord()) {
 
 		<div class="row">
 			<?php echo $form->labelEx($model_cliente,'password'); ?>
-			<?php echo $form->passwordField($model_cliente,'password',array('size'=>16,'maxlength'=>16)); ?>
+			<?php echo $form->passwordField($model_cliente,'password',array('size'=>16,'maxlength'=>16,'disabled' => 'disabled')); ?>
 			<?php echo $form->error($model_cliente,'password'); ?>
+			
+			<input type="checkbox" id="autopass" checked="uncheched"
+				onclick="togglepassword()">Contraseña automatica<br>
+			<!--  
+			<?php echo $form->checkBox($model_cliente,'password',array('size'=>50,'maxlength'=>50,'checked'=>'uncheched','onclick'=>'togglepassword(this)')); ?>
+			<?php echo $form->labelEx($model_cliente,'Contraseña automatica'); ?>
+			-->
 		</div>
 
 		<div class="row">
@@ -548,7 +627,7 @@ if(!$model->getIsNewRecord()) {
 
 		<div class="row">
 			<?php echo $form->labelEx($model_cliente,'celular'); ?>
-			<?php echo $form->textField($model_cliente,'celular',array('size'=>20,'maxlength'=>20)); ?>
+			<?php echo $form->textField($model_cliente,'celular',array('size'=>20,'maxlength'=>20,'onkeyup'=>'autocontrasena()')); ?>
 			<?php echo $form->error($model_cliente,'celular'); ?>
 		</div>
 
@@ -589,11 +668,15 @@ if(!$model->getIsNewRecord()) {
                              ),
                        'type'=>'POST',
 					   'success'=>'function(data){
-							$("#cliente").val(data);
-							$("#Ordenes_id_cliente").val(parseInt(data.split("-",1)));
-							muestraCliente();
-							$(".cliente").html($(".popup").html());
-							$(".popup").dialog("close");
+                			if (data != "Fallo"){
+								$("#cliente").val(data);
+								$("#Ordenes_id_cliente").val(parseInt(data.split("-",1)));
+								muestraCliente();
+								$(".cliente").html($(".popup").html());
+								$(".popup").dialog("close");
+                				}
+                			else
+                				alert("Verifique los datos");
 						}'
                     )
             );
@@ -602,6 +685,41 @@ if(!$model->getIsNewRecord()) {
 		?>
 </div>
 
+	<script type="text/javascript">
+
+function autocontrasena(){
+	
+	var chec = document.getElementById('autopass').checked;
+	
+	if (chec)
+	{
+		var celular = $('#Clientes_celular').val();
+		
+		if (celular.length > 4)
+			$('#Clientes_password').val(celular.substring(celular.length,celular.length-4));
+		else
+			{
+			while (celular.length < 4)
+				celular = '0' + celular;
+			$('#Clientes_password').val(celular);
+			}
+	}
+}
+
+function togglepassword(){
+	var chec = document.getElementById('autopass').checked;
+	var password = document.getElementById('Clientes_password'); 
+	password.disabled = chec;
+	
+	if (chec  && document.getElementById('Clientes_celular').value != '')
+		autocontrasena();
+	else
+		password.value = '';
+}
 
 
-</div><!-- form -->
+</script>
+
+
+</div>
+<!-- form -->

@@ -7,7 +7,9 @@ class StatisticsController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+	
+	public $autocompletes;
+	
 	/**
 	 * @return array action filters
 	 */
@@ -65,7 +67,7 @@ class StatisticsController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model
 		));
 	}
 
@@ -106,7 +108,9 @@ class StatisticsController extends Controller
                 $column = "fecha_entrega";
                 $valueStart = $stat->date_from;
                 $valueEnd = $stat->date_to;
+                
                 $criteriaOrders->addBetweenCondition($column, $valueStart, $valueEnd, 'AND');
+                $criteriaOrders->compare('tecnico', $stat->tecnico);
                 $orders = new CActiveDataProvider('Ordenes',array(
                     'criteria'=>$criteriaOrders,
                 ));
@@ -140,6 +144,7 @@ class StatisticsController extends Controller
                     $stat->save();
                 }
             }
+            
             return $stat;
         }
     }
@@ -177,10 +182,13 @@ class StatisticsController extends Controller
             ));
             $lastStat->setPagination(false);
         }
+        
+        $autocompletes = $this->_getAutocompletes();
 
         $this->render('index',array(
             'model'=>$stat,
             'lastStat'=>$lastStat,
+        	'autocompletes'=>$autocompletes,
         ));
 	}
 
@@ -225,5 +233,22 @@ class StatisticsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+
+	
+	private function _getAutocompletes()
+	{
+		$autocompletes = array();
+	
+		$Tecnicos = Clientes::model()->findAll(array('condition'=>'admin <> 0'));
+		
+		foreach ($Tecnicos as $tecnico1)
+		{
+			$autocompletes['Tecnicos'][] = $tecnico1->getAllConcat();
+		}
+		
+	
+		return $autocompletes;
 	}
 }

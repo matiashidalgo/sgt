@@ -11,7 +11,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'ordenes'), 'url'=>array('index')),
+	array('label'=>'Listar todas las ordenes', 'url'=>array('Index')),
 	array('label'=>Yii::t('general', 'listOrdenesEntregadas'), 'url'=>array('ordenesEntregadas')),
+	array('label'=>'Listar ordenes pendientes', 'url'=>array('OrdenesPendientes')),
 	array('label'=>Yii::t('general', 'create').' '.Yii::t('general', 'orden'), 'url'=>array('create')),
 );
 
@@ -48,14 +50,43 @@ o <b>=</b>) al comienzo de cada campo
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'nro_orden',
-		'id_cliente',
-		'id_equipo',
-		'nro_serie',
+		array('name'=>'nro_orden',
+			'header'=>'Orden',
+			'type' => 'raw',
+			'value'=>'CHtml::link($data->nro_orden,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))',
+			'htmlOptions'=>array('width'=>'30px',
+					'style'=>'text-align:center;'
+),
+				
+),
+			
+		array('name'=>'nombrecliente',
+			'header'=>'Cliente',
+			'type' => 'raw',
+			'value'=>'CHtml::link($data->idCliente->apellido . " " . $data->idCliente->nombre,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))'),
+		//array('name'=>'nombrecliente',
+			//	'header'=>'Cliente',
+				//'value'=>'$data->idCliente->apellido . " " . $data->idCliente->nombre'),//'$data->idCliente->nombre'),
+		//'id_cliente',
+		//'id_equipo',
+		array('name'=>'tipoequipo',
+			'header'=>'Tipo de equipo',
+			'type' => 'raw',
+			'value'=>'CHtml::link($data->equipos->tipo,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))'),
+		array(	
+			'name'=>'modeloequipo',
+			'header'=>'Modelo',
+			'type' => 'raw',	
+			'value'=>'CHtml::link($data->equipos->modelo,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))'),//'$data->equipos->modelo'),
+		//'nro_serie',
 		//'adquirido_en',
-		'nro_factura',
+		//'nro_factura',
 		//'fecha_compra',
-		'falla',
+		array(
+			'name'=>'nombretecnico',
+			'header'=>'Tecnico',
+			'type' => 'raw',
+			'value'=>'CHtml::link($data->idTecnico->apellido . " " . $data->idTecnico->nombre,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))'),
 		/*'reparacion',
 		'fecha_ingreso',
 		'fecha_presupuesto',
@@ -69,3 +100,7 @@ o <b>=</b>) al comienzo de cada campo
 		),
 	),
 )); ?>
+
+<script>
+	//-alert('<?php //echo $model->id_cliente;?>');
+</script>

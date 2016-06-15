@@ -3,6 +3,8 @@
 
 $this->pageTitle=Yii::app()->name . " - " . Yii::t('general', 'home');
 
+Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/nivo-slider.css');
+Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/carousel/light.css');
 Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/css/noticias.css');
 
 Yii::app()->clientScript->registerMetaTag('service, oficial, tecnico, taller,consulta, orden de reparacion, orden, reparacion, pedido, saber, necesito, busco, 
@@ -14,7 +16,17 @@ Yii::app()->clientScript->registerMetaTag('service, oficial, tecnico, taller,con
 
 Yii::app()->clientScript->registerMetaTag('Reparación de TV LCD, LED, Monitores, electronica en general. En nuestro sitio usted podrá obtener asistencia en un servicio técnico responsable, confiable y calificado que le proporciona soluciones a sus problemas en equipos electronicos', 
 										'description');
+										
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/scripts/jquery.nivo.slider.js');
 
+Yii::app()->clientScript->registerScript('carousel', "
+	/*$(window).load(function() {
+        $('#slider').nivoSlider({
+			pauseTime: 6000,
+		});
+    });*/
+	");
+	
 Yii::app()->clientScript->registerScript('noticias', "
 	var time = 1500;
 	var times = 2;
@@ -68,6 +80,24 @@ Tambien podrán ver imagenes de nuestro taller y algunos equipos reparados en la
 <br/>
 Por dudas y consultas al servicio tecnico, podran enviar un email a traves de la pagina de contacto.<br/>
 <br/>
+<!--
+<div id="wrapper">
+    <div class="carousel-container">
+    
+		<div class="slider-wrapper theme-light">
+            <div id="slider" class="nivoSlider">
+                <img src="../../images/carousel/marcas.jpg" data-thumb="../../images/carousel/marcas.jpg" alt="" title="Reparamos todas las marcas de equipos electronicos." />
+                <img src="../../images/carousel/tv_SMART_samsung.jpg" data-thumb="../../images/carousel/tv_SMART_samsung.jpg" alt="" title="Tenemos acceso a todos los repuestos exclusivos de TVs LED SMART." />
+                <img src="../../images/carousel/tv_SMART_philips.jpg" data-thumb="../../images/carousel/tv_SMART_philips.jpg" alt="" title="Tenemos acceso a todos los repuestos exclusivos de TVs LED SMART." data-transition="slideInLeft" />
+                <img src="../../images/carousel/garantias.jpg" data-thumb="../../images/carousel/garantias.jpg" alt="" title="#htmlcaption" />
+            </div>
+            <div id="htmlcaption" class="nivo-html-caption">
+                <strong>Todas nuestras reparaciones tienen 90 dias de garantia y se realizan con repuestos originales</strong> 
+            </div>
+        </div>
+	</div>
+</div>
+-->
 <div class="noticias">
 	<div class="titulo-noticias">
 		Últimas Noticias:

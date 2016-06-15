@@ -11,7 +11,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>Yii::t('general', 'list').' '.Yii::t('general', 'ordenes'), 'url'=>array('index')),
+	array('label'=>'Listar todas las ordenes', 'url'=>array('Index')),
 	array('label'=>Yii::t('general', 'listOrdenesEntregadas'), 'url'=>array('ordenesEntregadas')),
+	array('label'=>'Listar ordenes pendientes', 'url'=>array('ordenesPendientes')),
 	array('label'=>Yii::t('general', 'admin').' '.Yii::t('general', 'ordenes'), 'url'=>array('admin')),
 );
 ?>

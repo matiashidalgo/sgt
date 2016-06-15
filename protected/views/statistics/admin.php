@@ -46,6 +46,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		array('name'=>'nombrecliente',
+			'header'=>'Cliente',
+			'type' => 'raw',
+			'value'=>'CHtml::link($data->idTecnico->apellido . " " . $data->idTecnico->nombre,Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey)))'),
 		'date_from',
 		'date_to',
 		'statistic',

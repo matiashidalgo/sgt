@@ -47,21 +47,31 @@ o <b>=</b>) al comienzo de cada campo
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		//'id',
+		array(
+			'name'=>'id',
+			'htmlOptions'=>array(
+					'width'=>'30px',
+					'style'=>'text-align:center')				
+		),
 		//'cuenta',
 		//'admin',
 		//'password',
 		'nombre',
-		'apellido',
+		array(
+			'name'=>'apellido',
+			'htmlOptions'=>array(
+					'width'=>'100px')				
+		),
 		'direccion',
-		'telefono',
+		//'telefono',
 		'celular',
 		'ciudad',
 		/*'email',
 		'observaciones',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'CBotonesClientes',
+			'htmlOptions'=>array('width'=>'75px')				
 		),
 	),
 )); ?>
