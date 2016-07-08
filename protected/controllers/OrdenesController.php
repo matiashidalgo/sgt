@@ -378,17 +378,24 @@ public function actionOrdenesPendientes($id='')
         //$mPDF1 = Yii::app()->ePdf->mpdf();
         $model = $this->loadModel($id);
         // You can easily override default constructor's params
+		//$mode='',$format='A4',$default_font_size=0,$default_font='',$mgl=15,$mgr=15,$mgt=16,$mgb=16,$mgh=9,$mgf=9, $orientation='P'
         /** @var $mPDF1 mPDF */
-        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A4',0,'',10,10,10,10,0,0);
+        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A5-L',0,'',10,10,10,10,0,0);
         // render
-        $mPDF1->SetAutoPageBreak(false);
+        //$mPDF1->SetAutoPageBreak(false);
         $mPDF1->SetTitle('Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ');
         $mPDF1->SetSubject('Leonardo Hidalgo');
         $mPDF1->SetAuthor('LeoTV');
         $mPDF1->SetCreator('SGT');
 
         $mPDF1->WriteHTML(
-            $this->renderPartial('_pdf',array(
+            $this->renderPartial('_pdfCustomer',array(
+                'model'=> $model,
+            ),true)
+        );
+
+        $mPDF1->WriteHTML(
+            $this->renderPartial('_pdfCopy',array(
                 'model'=> $model,
             ),true)
         );
@@ -420,7 +427,7 @@ public function actionOrdenesPendientes($id='')
     	//	$nroorden = $Ultimaorden_tmp->nro_orden;
     	//}
     	
-    	return $nroorden;
+    	//return $nroorden;
 
     }
 

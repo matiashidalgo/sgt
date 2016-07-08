@@ -1,20 +1,25 @@
 .pdf {
-	padding-top: 3mm;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 12px;
     line-height: 1.45em;
-    width: 459pt;
-    height: 649pt;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+}
+
+.pdf .nro_ordentop {
+    padding-left: 300px;
+    padding-top:10px;
+    padding-bottom: 20px;
 }
 
 .pdf .clientCopy {
-    padding-left: 220px;
-    padding-right: 50px;
+    padding-left: 130px;
+    padding-right: 130px;
     height: 139mm;
 }
 
 .pdf .clientCopy .header {
-    height: 21.5mm;
+    height: 15mm;
 }
 
 .pdf .clientCopy .password {
@@ -48,13 +53,27 @@
 	padding-top: 1mm;
 }
 
+.pdf .clientCopy .content {
+	height: 190px;
+    width: 100%;
+}
+
 .pdf .clientCopy .footer {
 
 }
 
+.pdf .clientCopy .footer .legal {
+    font-size: 7px;
+}
+
 .pdf .ticket {
-    padding-left: 80px;
     padding-right: 0px;
+    font-size: 12px;
+}
+
+.pdf .ticket div.leftSide div,
+.pdf .ticket div.rightSide div {
+    padding-bottom: 7px;
 }
 
 .pdf .ticket .leftSide {
@@ -93,7 +112,7 @@
 }
 
 .pdf .ticket .rightSide {
-    width: 180px;
+    width: 40%;
     float:right;
 }
 
@@ -107,7 +126,7 @@
 }
 
 .pdf .ticket .rightSide .tel {
-
+    padding-bottom: 0;
 }
 
 .pdf .ticket .rightSide .cel {
@@ -115,10 +134,51 @@
 }
 
 .pdf .ticket .rightSide .imei {
-	padding-left: -80px;
-	padding-top: 4px;
+
 }
 
 .pdf .nfalla {
-	padding-left: 80px;
+    font-size: 14px;
+    height: 50px;
+}
+
+.pdf .extras {
+    font-size: 16px;
+    line-height: 1.35em;
+}
+
+.pdf .extras .observaciones {
+    width: 100%;
+}
+
+.pdf .extras .condiciones {
+    font-size: 12px;
+}
+
+.pdf .extras .condiciones .firma {
+
+}
+
+.pdf .extras .reparacion {
+    margin-top: 5px;
+}
+
+.pdf .extras .repuestos{
+
+}
+
+.pdf .extras .fechas{
+
+}
+
+.pdf .extras .firma-final{
+    text-align: right;
+}
+
+span.info {
+    font-weight: bold;
+}
+
+div {
+    /*border: dashed 1px red;*/
 }
