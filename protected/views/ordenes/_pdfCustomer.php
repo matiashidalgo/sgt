@@ -20,11 +20,7 @@
         </div>
         <div class="footer">
             <div class="legal">
-                <span class="info">Nota:</span> Este documento deberá ser presentado para retirar el producto arriba detallado.<br />
-                Transcurridos los 90 dias de la fecha pactada para su retiro la casa quedará facultada<br />
-                para disponer del producto sin necesidad de previa interpelacion judicial alguna,<br />
-                quedando de esta forma, cancelada la deuda y los daños y perjuicios emergentes de<br />
-                su incumplimiento (art. 872 y 873 del código civil)
+                <span class="info">Nota:</span> Este documento deberá ser presentado para retirar el producto arriba detallado. Transcurridos los 90 dias de la fecha pactada para su retiro la casa quedará facultada para disponer del producto sin necesidad de previa interpelacion judicial alguna, quedando de esta forma, cancelada la deuda y los daños y perjuicios emergentes de su incumplimiento (art. 872 y 873 del código civil)
             </div>
         </div>
     </div>
