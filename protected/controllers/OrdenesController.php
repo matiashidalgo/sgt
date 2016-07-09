@@ -92,7 +92,7 @@ class OrdenesController extends Controller
 			if($model->save()){
 				if(isset($_POST['service_oficial']))
 				{
-					$this->redirect(array('/ordenesso/create','nro_orden'=>$model->nro_orden));
+					$this->redirect(array('/ordenesSo/create','nro_orden'=>$model->nro_orden));
 				} else {
 					$this->redirect(array('view','id'=>$model->nro_orden));
 				}
@@ -132,9 +132,9 @@ class OrdenesController extends Controller
 					$data = OrdenesSo::model()->find('nro_orden=:nro_orden',array(':nro_orden'=>$id));
 					if($data===null)
 					{
-						$this->redirect(array('/ordenesso/create','nro_orden'=>$model->nro_orden));
+						$this->redirect(array('/ordenesSo/create','nro_orden'=>$model->nro_orden));
 					} else {
-						$this->redirect(array('/ordenesso/update','id'=>$data->id));
+						$this->redirect(array('/ordenesSo/update','id'=>$data->id));
 					}
 				} else {
 					$this->redirect(array('view','id'=>$model->nro_orden));
