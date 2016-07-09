@@ -54,7 +54,7 @@
 }
 
 .pdf .clientCopy .content {
-	height: 240px;
+	height: 235px;
     width: 100%;
 }
 
@@ -65,6 +65,7 @@
 .pdf .clientCopy .footer .legal {
     font-size: 9px;
     line-height: 1.2em;
+    text-align: justify;
 }
 
 .pdf .ticket {
