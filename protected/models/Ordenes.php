@@ -97,7 +97,7 @@ class Ordenes extends CActiveRecord
 
 	public function usuarioexistente($attribute, $params)
 	{
-		$existe = Clientes::model()->exists('id = ' . split('-',$this->tecnico)[0] . ' and admin > 0');
+		$existe = Clientes::model()->exists('id = ' . explode('-',$this->tecnico)[0] . ' and admin > 0');
 
 		if(!$existe)
 			$this->addError($attribute, 'Tecnico inexistente.');
