@@ -5,7 +5,7 @@
 <div class="pdf">
     <div class="ticket">
         <div class="leftSide">
-            <div class="nro_orden">Orden de reparación N° <?php echo $model->nro_orden ?></div>
+            <div class="nro_orden">Orden de reparación <span class="info" style="font-size: 15px;">N° <?php echo $model->nro_orden ?></span></div>
             <div class="lastname">Apellido <?php echo $model->idCliente->apellido ?></div>
             <div class="firstname">Nombre <?php echo $model->idCliente->nombre ?></div>
             <div class="equipo">Equipo <?php echo $model->idEquipo->tipo ?></div>
