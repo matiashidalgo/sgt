@@ -54,7 +54,7 @@
 }
 
 .pdf .clientCopy .content {
-	height: 235px;
+	height: 197px;
     width: 100%;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .pdf .clientCopy .footer .legal {
-    font-size: 9px;
+    font-size: 7px;
     line-height: 1.2em;
     text-align: justify;
 }
@@ -141,7 +141,7 @@
 
 .pdf .nfalla {
     font-size: 14px;
-    height: 50px;
+    height: 35px;
 }
 
 .pdf .extras {
@@ -154,11 +154,14 @@
 }
 
 .pdf .extras .condiciones {
-    font-size: 12px;
+    font-size: 8px;
+    float:left;
+    width:98%;
+    text-align: justify;
 }
 
 .pdf .extras .condiciones .firma {
-
+    font-size: 12px;
 }
 
 .pdf .extras .reparacion {
@@ -170,11 +173,15 @@
 }
 
 .pdf .extras .fechas{
-
+    float:left;
+    width:48%;
 }
 
 .pdf .extras .firma-final{
     text-align: right;
+    float:right;
+    width:50%;
+    padding-right: 10px;
 }
 
 span.info {

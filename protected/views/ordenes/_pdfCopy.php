@@ -25,24 +25,25 @@
 
     <div class="extras">
         <div class="observaciones">
-            Observaciones_______________________________________________________________________________________________________________________________________________________________________________________
-        </div>
-        <div class="condiciones">
-            Acepto la condiciones establecidas en los artículos 872 y 873 del código civil. <span class="firma">Firma:</span>
+            Observaciones___________________________________________________________________________________<br/>__________________________________________________________________________________________________
         </div>
         <div class="reparacion">
-            Reparación______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+            Reparación______________________________________________________________________________________<br/>__________________________________________________________________________________________________
         </div>
         <div class="repuestos">
             Repuestos__________________________________________________
             ____________________________________________________________
         </div>
         <div class="fechas">
-            Reparado__/__/____<span style="color: #FFFFFF;">---------------------</span>Entregado__/__/____
+            Reparado__/__/____<span style="color: #FFFFFF;">------------</span>Entregado__/__/____
         </div>
         <div class="firma-final">
-            __________________________________________________ <br />
+            _________________________________________________ <br />
             Firma conforme----------------Aclaración<span style="color: #FFFFFF;">--------</span>
+        </div>
+        <div class="condiciones">
+            El cliente toma conocimiento y acepta conocer que su información personal e información de su dispositivo será utilizada por Samsung para prestarle el Servicio solicitado, identificarlo como Usuario de nuestros Productos y Servicios, saber cómo utiliza nuestros Productos y Servicios para mejorar su experiencia y desarrollar productos y servicios nuevos, con fines de evaluación y análisis de mercado,
+            realizar sorteos, concursos o promociones y para proporcionarle contenidos, recomendaciones y publicidad personalizados. A tal efecto, Samsung podrá compartir su información con empresas del grupo Samsung, socios comerciales, proveedores de servicios y autoridades competentes localizados dentro o fuera de la República Argentina (como por ejemplo: Corea del Sur). Para más información visite nuestra política de privacidad global (https://account.samsung.com/membership/pp) y local (http://www.samsung.com/ar/info/privacy/ ), las cuales Ud. consiente al utilizar nuestros productos y firmar esta orden de servicio.
         </div>
     </div>
 </div>

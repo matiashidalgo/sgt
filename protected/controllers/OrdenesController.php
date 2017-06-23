@@ -380,7 +380,7 @@ public function actionOrdenesPendientes($id='')
         // You can easily override default constructor's params
 		//$mode='',$format='A4',$default_font_size=0,$default_font='',$mgl=15,$mgr=15,$mgt=16,$mgb=16,$mgh=9,$mgf=9, $orientation='P'
         /** @var $mPDF1 mPDF */
-        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A5-L',0,'',10,10,10,10,0,0);
+        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A5-L',0,'',10,5,7,5,0,0);
         // render
         //$mPDF1->SetAutoPageBreak(false);
         $mPDF1->SetTitle('Orden de Reparacion ' . $model->nro_orden . ' ORIGINAL ');

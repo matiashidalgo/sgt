@@ -20,7 +20,9 @@
         </div>
         <div class="footer">
             <div class="legal">
-                <span class="info">Nota:</span> Este documento deberá ser presentado para retirar el producto arriba detallado. Transcurridos los 90 dias de la fecha pactada para su retiro la casa quedará facultada para disponer del producto sin necesidad de previa interpelacion judicial alguna, quedando de esta forma, cancelada la deuda y los daños y perjuicios emergentes de su incumplimiento (art. 872 y 873 del código civil)
+                <span class="info">Nota:</span> Este documento deberá ser presentado para retirar el producto arriba detallado. Transcurridos los 90 dias de la fecha pactada para su retiro la casa quedará facultada para disponer del producto sin necesidad de previa interpelacion judicial alguna, quedando de esta forma, cancelada la deuda y los daños y perjuicios emergentes de su incumplimiento. <br />
+                El cliente toma conocimiento y acepta conocer que su información personal e información de su dispositivo será utilizada por Samsung para prestarle el Servicio solicitado, identificarlo como Usuario de nuestros Productos y Servicios, saber cómo utiliza nuestros Productos y Servicios para mejorar su experiencia y desarrollar productos y servicios nuevos, con fines de evaluación y análisis de mercado,
+                realizar sorteos, concursos o promociones y para proporcionarle contenidos, recomendaciones y publicidad personalizados. A tal efecto, Samsung podrá compartir su información con empresas del grupo Samsung, socios comerciales, proveedores de servicios y autoridades competentes localizados dentro o fuera de la República Argentina (como por ejemplo: Corea del Sur). Para más información visite nuestra política de privacidad global (https://account.samsung.com/membership/pp) y local (http://www.samsung.com/ar/info/privacy/ ), las cuales Ud. consiente al utilizar nuestros productos y firmar esta orden de servicio.
             </div>
         </div>
     </div>
